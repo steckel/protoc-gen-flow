@@ -1,0 +1,375 @@
+// @flow
+// GENERATED CODE -- DO NOT EDIT!
+
+declare export class TestAllTypes {
+  getOptionalInt32(): number;
+  setOptionalInt32(val: number): void;
+  getOptionalInt64(): number;
+  setOptionalInt64(val: number): void;
+  getOptionalUint32(): number;
+  setOptionalUint32(val: number): void;
+  getOptionalUint64(): number;
+  setOptionalUint64(val: number): void;
+  getOptionalSint32(): number;
+  setOptionalSint32(val: number): void;
+  getOptionalSint64(): number;
+  setOptionalSint64(val: number): void;
+  getOptionalFixed32(): number;
+  setOptionalFixed32(val: number): void;
+  getOptionalFixed64(): number;
+  setOptionalFixed64(val: number): void;
+  getOptionalSfixed32(): number;
+  setOptionalSfixed32(val: number): void;
+  getOptionalSfixed64(): number;
+  setOptionalSfixed64(val: number): void;
+  getOptionalFloat(): number;
+  setOptionalFloat(val: number): void;
+  getOptionalDouble(): number;
+  setOptionalDouble(val: number): void;
+  getOptionalBool(): boolean;
+  setOptionalBool(val: boolean): void;
+  getOptionalString(): string;
+  setOptionalString(val: string): void;
+  getOptionalBytes(): string;
+  setOptionalBytes(val: string): void;
+  getOptionalgroup(): ?OptionalGroup;
+  setOptionalgroup(val: ?OptionalGroup): void;
+  getOptionalForeignMessage(): ?ForeignMessage;
+  setOptionalForeignMessage(val: ?ForeignMessage): void;
+  getOptionalForeignEnum(): ForeignEnum;
+  setOptionalForeignEnum(val: ForeignEnum): void;
+  getRepeatedInt32List(): Array<number>;
+  setRepeatedInt32List(val: Array<number>): void;
+  getRepeatedInt64List(): Array<number>;
+  setRepeatedInt64List(val: Array<number>): void;
+  getRepeatedUint32List(): Array<number>;
+  setRepeatedUint32List(val: Array<number>): void;
+  getRepeatedUint64List(): Array<number>;
+  setRepeatedUint64List(val: Array<number>): void;
+  getRepeatedSint32List(): Array<number>;
+  setRepeatedSint32List(val: Array<number>): void;
+  getRepeatedSint64List(): Array<number>;
+  setRepeatedSint64List(val: Array<number>): void;
+  getRepeatedFixed32List(): Array<number>;
+  setRepeatedFixed32List(val: Array<number>): void;
+  getRepeatedFixed64List(): Array<number>;
+  setRepeatedFixed64List(val: Array<number>): void;
+  getRepeatedSfixed32List(): Array<number>;
+  setRepeatedSfixed32List(val: Array<number>): void;
+  getRepeatedSfixed64List(): Array<number>;
+  setRepeatedSfixed64List(val: Array<number>): void;
+  getRepeatedFloatList(): Array<number>;
+  setRepeatedFloatList(val: Array<number>): void;
+  getRepeatedDoubleList(): Array<number>;
+  setRepeatedDoubleList(val: Array<number>): void;
+  getRepeatedBoolList(): Array<boolean>;
+  setRepeatedBoolList(val: Array<boolean>): void;
+  getRepeatedStringList(): Array<string>;
+  setRepeatedStringList(val: Array<string>): void;
+  getRepeatedBytesList(): Array<string>;
+  setRepeatedBytesList(val: Array<string>): void;
+  getRepeatedgroupList(): Array<RepeatedGroup>;
+  setRepeatedgroupList(val: Array<RepeatedGroup>): void;
+  getRepeatedForeignMessageList(): Array<ForeignMessage>;
+  setRepeatedForeignMessageList(val: Array<ForeignMessage>): void;
+  getRepeatedForeignEnumList(): Array<ForeignEnum>;
+  setRepeatedForeignEnumList(val: Array<ForeignEnum>): void;
+  getPackedRepeatedInt32List(): Array<number>;
+  setPackedRepeatedInt32List(val: Array<number>): void;
+  getPackedRepeatedInt64List(): Array<number>;
+  setPackedRepeatedInt64List(val: Array<number>): void;
+  getPackedRepeatedUint32List(): Array<number>;
+  setPackedRepeatedUint32List(val: Array<number>): void;
+  getPackedRepeatedUint64List(): Array<number>;
+  setPackedRepeatedUint64List(val: Array<number>): void;
+  getPackedRepeatedSint32List(): Array<number>;
+  setPackedRepeatedSint32List(val: Array<number>): void;
+  getPackedRepeatedSint64List(): Array<number>;
+  setPackedRepeatedSint64List(val: Array<number>): void;
+  getPackedRepeatedFixed32List(): Array<number>;
+  setPackedRepeatedFixed32List(val: Array<number>): void;
+  getPackedRepeatedFixed64List(): Array<number>;
+  setPackedRepeatedFixed64List(val: Array<number>): void;
+  getPackedRepeatedSfixed32List(): Array<number>;
+  setPackedRepeatedSfixed32List(val: Array<number>): void;
+  getPackedRepeatedSfixed64List(): Array<number>;
+  setPackedRepeatedSfixed64List(val: Array<number>): void;
+  getPackedRepeatedFloatList(): Array<number>;
+  setPackedRepeatedFloatList(val: Array<number>): void;
+  getPackedRepeatedDoubleList(): Array<number>;
+  setPackedRepeatedDoubleList(val: Array<number>): void;
+  getPackedRepeatedBoolList(): Array<boolean>;
+  setPackedRepeatedBoolList(val: Array<boolean>): void;
+  getOneofUint32(): number;
+  setOneofUint32(val: number): void;
+  getOneofForeignMessage(): ?ForeignMessage;
+  setOneofForeignMessage(val: ?ForeignMessage): void;
+  getOneofString(): string;
+  setOneofString(val: string): void;
+  getOneofBytes(): string;
+  setOneofBytes(val: string): void;
+  toObject(includeInstance: boolean): TestAllTypesObj;
+  serializeBinary(): Uint8Array;
+  serializeBinaryToWriter(writer: any): void;
+  cloneMessage(): TestAllTypes;
+  static deserializeBinary(bytes: any): TestAllTypes;
+  static deserializeBinaryFromReader(msg: TestAllTypes, reader: any): TestAllTypes;
+  static serializeBinaryToWriter(message: TestAllTypes, writer: any): void;
+  static toObject(includeInstance: boolean, msg: TestAllTypes): TestAllTypesObj;
+  static OptionalGroup: typeof OptionalGroup;
+  static RepeatedGroup: typeof RepeatedGroup;
+}
+
+export type TestAllTypesObj = {
+  optionalInt32: number,
+  optionalInt64: number,
+  optionalUint32: number,
+  optionalUint64: number,
+  optionalSint32: number,
+  optionalSint64: number,
+  optionalFixed32: number,
+  optionalFixed64: number,
+  optionalSfixed32: number,
+  optionalSfixed64: number,
+  optionalFloat: number,
+  optionalDouble: number,
+  optionalBool: boolean,
+  optionalString: string,
+  optionalBytes: string,
+  optionalgroup: ?OptionalGroupObj,
+  optionalForeignMessage: ?ForeignMessageObj,
+  optionalForeignEnum: ForeignEnum,
+  repeatedInt32List: Array<number>,
+  repeatedInt64List: Array<number>,
+  repeatedUint32List: Array<number>,
+  repeatedUint64List: Array<number>,
+  repeatedSint32List: Array<number>,
+  repeatedSint64List: Array<number>,
+  repeatedFixed32List: Array<number>,
+  repeatedFixed64List: Array<number>,
+  repeatedSfixed32List: Array<number>,
+  repeatedSfixed64List: Array<number>,
+  repeatedFloatList: Array<number>,
+  repeatedDoubleList: Array<number>,
+  repeatedBoolList: Array<boolean>,
+  repeatedStringList: Array<string>,
+  repeatedBytesList: Array<string>,
+  repeatedgroupList: Array<RepeatedGroupObj>,
+  repeatedForeignMessageList: Array<ForeignMessageObj>,
+  repeatedForeignEnumList: Array<ForeignEnum>,
+  packedRepeatedInt32List: Array<number>,
+  packedRepeatedInt64List: Array<number>,
+  packedRepeatedUint32List: Array<number>,
+  packedRepeatedUint64List: Array<number>,
+  packedRepeatedSint32List: Array<number>,
+  packedRepeatedSint64List: Array<number>,
+  packedRepeatedFixed32List: Array<number>,
+  packedRepeatedFixed64List: Array<number>,
+  packedRepeatedSfixed32List: Array<number>,
+  packedRepeatedSfixed64List: Array<number>,
+  packedRepeatedFloatList: Array<number>,
+  packedRepeatedDoubleList: Array<number>,
+  packedRepeatedBoolList: Array<boolean>,
+  oneofUint32: number,
+  oneofForeignMessage: ?ForeignMessageObj,
+  oneofString: string,
+  oneofBytes: string
+}
+
+declare export class OptionalGroup {
+  getA(): number;
+  setA(val: number): void;
+  toObject(includeInstance: boolean): OptionalGroupObj;
+  serializeBinary(): Uint8Array;
+  serializeBinaryToWriter(writer: any): void;
+  cloneMessage(): OptionalGroup;
+  static deserializeBinary(bytes: any): OptionalGroup;
+  static deserializeBinaryFromReader(msg: OptionalGroup, reader: any): OptionalGroup;
+  static serializeBinaryToWriter(message: OptionalGroup, writer: any): void;
+  static toObject(includeInstance: boolean, msg: OptionalGroup): OptionalGroupObj;
+}
+
+export type OptionalGroupObj = {
+  a: number
+}
+
+declare export class RepeatedGroup {
+  getA(): number;
+  setA(val: number): void;
+  toObject(includeInstance: boolean): RepeatedGroupObj;
+  serializeBinary(): Uint8Array;
+  serializeBinaryToWriter(writer: any): void;
+  cloneMessage(): RepeatedGroup;
+  static deserializeBinary(bytes: any): RepeatedGroup;
+  static deserializeBinaryFromReader(msg: RepeatedGroup, reader: any): RepeatedGroup;
+  static serializeBinaryToWriter(message: RepeatedGroup, writer: any): void;
+  static toObject(includeInstance: boolean, msg: RepeatedGroup): RepeatedGroupObj;
+}
+
+export type RepeatedGroupObj = {
+  a: number
+}
+
+declare export class ForeignMessage {
+  getC(): number;
+  setC(val: number): void;
+  toObject(includeInstance: boolean): ForeignMessageObj;
+  serializeBinary(): Uint8Array;
+  serializeBinaryToWriter(writer: any): void;
+  cloneMessage(): ForeignMessage;
+  static deserializeBinary(bytes: any): ForeignMessage;
+  static deserializeBinaryFromReader(msg: ForeignMessage, reader: any): ForeignMessage;
+  static serializeBinaryToWriter(message: ForeignMessage, writer: any): void;
+  static toObject(includeInstance: boolean, msg: ForeignMessage): ForeignMessageObj;
+}
+
+export type ForeignMessageObj = {
+  c: number
+}
+
+declare export class TestExtendable {
+  toObject(includeInstance: boolean): TestExtendableObj;
+  serializeBinary(): Uint8Array;
+  serializeBinaryToWriter(writer: any): void;
+  cloneMessage(): TestExtendable;
+  static deserializeBinary(bytes: any): TestExtendable;
+  static deserializeBinaryFromReader(msg: TestExtendable, reader: any): TestExtendable;
+  static serializeBinaryToWriter(message: TestExtendable, writer: any): void;
+  static toObject(includeInstance: boolean, msg: TestExtendable): TestExtendableObj;
+}
+
+export type TestExtendableObj = {
+}
+
+declare export class ExtendsWithMessage {
+  getFoo(): number;
+  setFoo(val: number): void;
+  toObject(includeInstance: boolean): ExtendsWithMessageObj;
+  serializeBinary(): Uint8Array;
+  serializeBinaryToWriter(writer: any): void;
+  cloneMessage(): ExtendsWithMessage;
+  static deserializeBinary(bytes: any): ExtendsWithMessage;
+  static deserializeBinaryFromReader(msg: ExtendsWithMessage, reader: any): ExtendsWithMessage;
+  static serializeBinaryToWriter(message: ExtendsWithMessage, writer: any): void;
+  static toObject(includeInstance: boolean, msg: ExtendsWithMessage): ExtendsWithMessageObj;
+}
+
+export type ExtendsWithMessageObj = {
+  foo: number
+}
+
+declare export class TestMapFields {
+  getMapStringStringMap(): any;
+  getMapStringInt32Map(): any;
+  getMapStringInt64Map(): any;
+  getMapStringBoolMap(): any;
+  getMapStringDoubleMap(): any;
+  getMapStringEnumMap(): any;
+  getMapStringMsgMap(): any;
+  getMapInt32StringMap(): any;
+  getMapInt64StringMap(): any;
+  getMapBoolStringMap(): any;
+  getTestMapFields(): ?TestMapFields;
+  setTestMapFields(val: ?TestMapFields): void;
+  getMapStringTestmapfieldsMap(): any;
+  toObject(includeInstance: boolean): TestMapFieldsObj;
+  serializeBinary(): Uint8Array;
+  serializeBinaryToWriter(writer: any): void;
+  cloneMessage(): TestMapFields;
+  static deserializeBinary(bytes: any): TestMapFields;
+  static deserializeBinaryFromReader(msg: TestMapFields, reader: any): TestMapFields;
+  static serializeBinaryToWriter(message: TestMapFields, writer: any): void;
+  static toObject(includeInstance: boolean, msg: TestMapFields): TestMapFieldsObj;
+}
+
+export type TestMapFieldsObj = {
+  mapStringStringMap: Array<MapStringStringEntryObj>,
+  mapStringInt32Map: Array<MapStringInt32EntryObj>,
+  mapStringInt64Map: Array<MapStringInt64EntryObj>,
+  mapStringBoolMap: Array<MapStringBoolEntryObj>,
+  mapStringDoubleMap: Array<MapStringDoubleEntryObj>,
+  mapStringEnumMap: Array<MapStringEnumEntryObj>,
+  mapStringMsgMap: Array<MapStringMsgEntryObj>,
+  mapInt32StringMap: Array<MapInt32StringEntryObj>,
+  mapInt64StringMap: Array<MapInt64StringEntryObj>,
+  mapBoolStringMap: Array<MapBoolStringEntryObj>,
+  testMapFields: ?TestMapFieldsObj,
+  mapStringTestmapfieldsMap: Array<MapStringTestmapfieldsEntryObj>
+}
+
+export type MapStringStringEntryObj = {
+  key: string,
+  value: string
+}
+
+export type MapStringInt32EntryObj = {
+  key: string,
+  value: number
+}
+
+export type MapStringInt64EntryObj = {
+  key: string,
+  value: number
+}
+
+export type MapStringBoolEntryObj = {
+  key: string,
+  value: boolean
+}
+
+export type MapStringDoubleEntryObj = {
+  key: string,
+  value: number
+}
+
+export type MapStringEnumEntryObj = {
+  key: string,
+  value: MapValueEnum
+}
+
+export type MapStringMsgEntryObj = {
+  key: string,
+  value: ?MapValueMessageObj
+}
+
+export type MapInt32StringEntryObj = {
+  key: number,
+  value: string
+}
+
+export type MapInt64StringEntryObj = {
+  key: number,
+  value: string
+}
+
+export type MapBoolStringEntryObj = {
+  key: boolean,
+  value: string
+}
+
+export type MapStringTestmapfieldsEntryObj = {
+  key: string,
+  value: ?TestMapFieldsObj
+}
+
+declare export class MapValueMessage {
+  getFoo(): number;
+  setFoo(val: number): void;
+  toObject(includeInstance: boolean): MapValueMessageObj;
+  serializeBinary(): Uint8Array;
+  serializeBinaryToWriter(writer: any): void;
+  cloneMessage(): MapValueMessage;
+  static deserializeBinary(bytes: any): MapValueMessage;
+  static deserializeBinaryFromReader(msg: MapValueMessage, reader: any): MapValueMessage;
+  static serializeBinaryToWriter(message: MapValueMessage, writer: any): void;
+  static toObject(includeInstance: boolean, msg: MapValueMessage): MapValueMessageObj;
+}
+
+export type MapValueMessageObj = {
+  foo: number
+}
+
+export type ForeignEnum = 4 | 5 | 6;
+
+export type MapValueEnum = 0 | 1 | 2;
+

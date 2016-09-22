@@ -1,0 +1,142 @@
+// @flow
+// GENERATED CODE -- DO NOT EDIT!
+
+import type {/* IMPLEMENT ME */} from "./proto2.proto.js";
+
+declare export class TestProto3 {
+  getOptionalInt32(): number;
+  setOptionalInt32(val: number): void;
+  getOptionalInt64(): number;
+  setOptionalInt64(val: number): void;
+  getOptionalUint32(): number;
+  setOptionalUint32(val: number): void;
+  getOptionalUint64(): number;
+  setOptionalUint64(val: number): void;
+  getOptionalSint32(): number;
+  setOptionalSint32(val: number): void;
+  getOptionalSint64(): number;
+  setOptionalSint64(val: number): void;
+  getOptionalFixed32(): number;
+  setOptionalFixed32(val: number): void;
+  getOptionalFixed64(): number;
+  setOptionalFixed64(val: number): void;
+  getOptionalSfixed32(): number;
+  setOptionalSfixed32(val: number): void;
+  getOptionalSfixed64(): number;
+  setOptionalSfixed64(val: number): void;
+  getOptionalFloat(): number;
+  setOptionalFloat(val: number): void;
+  getOptionalDouble(): number;
+  setOptionalDouble(val: number): void;
+  getOptionalBool(): boolean;
+  setOptionalBool(val: boolean): void;
+  getOptionalString(): string;
+  setOptionalString(val: string): void;
+  getOptionalBytes(): string;
+  setOptionalBytes(val: string): void;
+  getOptionalForeignMessage(): ?ForeignMessage;
+  setOptionalForeignMessage(val: ?ForeignMessage): void;
+  getOptionalForeignEnum(): Proto3Enum;
+  setOptionalForeignEnum(val: Proto3Enum): void;
+  getRepeatedInt32List(): Array<number>;
+  setRepeatedInt32List(val: Array<number>): void;
+  getRepeatedInt64List(): Array<number>;
+  setRepeatedInt64List(val: Array<number>): void;
+  getRepeatedUint32List(): Array<number>;
+  setRepeatedUint32List(val: Array<number>): void;
+  getRepeatedUint64List(): Array<number>;
+  setRepeatedUint64List(val: Array<number>): void;
+  getRepeatedSint32List(): Array<number>;
+  setRepeatedSint32List(val: Array<number>): void;
+  getRepeatedSint64List(): Array<number>;
+  setRepeatedSint64List(val: Array<number>): void;
+  getRepeatedFixed32List(): Array<number>;
+  setRepeatedFixed32List(val: Array<number>): void;
+  getRepeatedFixed64List(): Array<number>;
+  setRepeatedFixed64List(val: Array<number>): void;
+  getRepeatedSfixed32List(): Array<number>;
+  setRepeatedSfixed32List(val: Array<number>): void;
+  getRepeatedSfixed64List(): Array<number>;
+  setRepeatedSfixed64List(val: Array<number>): void;
+  getRepeatedFloatList(): Array<number>;
+  setRepeatedFloatList(val: Array<number>): void;
+  getRepeatedDoubleList(): Array<number>;
+  setRepeatedDoubleList(val: Array<number>): void;
+  getRepeatedBoolList(): Array<boolean>;
+  setRepeatedBoolList(val: Array<boolean>): void;
+  getRepeatedStringList(): Array<string>;
+  setRepeatedStringList(val: Array<string>): void;
+  getRepeatedBytesList(): Array<string>;
+  setRepeatedBytesList(val: Array<string>): void;
+  getRepeatedForeignMessageList(): Array<ForeignMessage>;
+  setRepeatedForeignMessageList(val: Array<ForeignMessage>): void;
+  getRepeatedForeignEnumList(): Array<Proto3Enum>;
+  setRepeatedForeignEnumList(val: Array<Proto3Enum>): void;
+  getOneofUint32(): number;
+  setOneofUint32(val: number): void;
+  getOneofForeignMessage(): ?ForeignMessage;
+  setOneofForeignMessage(val: ?ForeignMessage): void;
+  getOneofString(): string;
+  setOneofString(val: string): void;
+  getOneofBytes(): string;
+  setOneofBytes(val: string): void;
+  getMapStringToStringMap(): any;
+  toObject(includeInstance: boolean): TestProto3Obj;
+  serializeBinary(): Uint8Array;
+  serializeBinaryToWriter(writer: any): void;
+  cloneMessage(): TestProto3;
+  static deserializeBinary(bytes: any): TestProto3;
+  static deserializeBinaryFromReader(msg: TestProto3, reader: any): TestProto3;
+  static serializeBinaryToWriter(message: TestProto3, writer: any): void;
+  static toObject(includeInstance: boolean, msg: TestProto3): TestProto3Obj;
+}
+
+export type TestProto3Obj = {
+  optionalInt32: number,
+  optionalInt64: number,
+  optionalUint32: number,
+  optionalUint64: number,
+  optionalSint32: number,
+  optionalSint64: number,
+  optionalFixed32: number,
+  optionalFixed64: number,
+  optionalSfixed32: number,
+  optionalSfixed64: number,
+  optionalFloat: number,
+  optionalDouble: number,
+  optionalBool: boolean,
+  optionalString: string,
+  optionalBytes: string,
+  optionalForeignMessage: ?ForeignMessageObj,
+  optionalForeignEnum: Proto3Enum,
+  repeatedInt32List: Array<number>,
+  repeatedInt64List: Array<number>,
+  repeatedUint32List: Array<number>,
+  repeatedUint64List: Array<number>,
+  repeatedSint32List: Array<number>,
+  repeatedSint64List: Array<number>,
+  repeatedFixed32List: Array<number>,
+  repeatedFixed64List: Array<number>,
+  repeatedSfixed32List: Array<number>,
+  repeatedSfixed64List: Array<number>,
+  repeatedFloatList: Array<number>,
+  repeatedDoubleList: Array<number>,
+  repeatedBoolList: Array<boolean>,
+  repeatedStringList: Array<string>,
+  repeatedBytesList: Array<string>,
+  repeatedForeignMessageList: Array<ForeignMessageObj>,
+  repeatedForeignEnumList: Array<Proto3Enum>,
+  oneofUint32: number,
+  oneofForeignMessage: ?ForeignMessageObj,
+  oneofString: string,
+  oneofBytes: string,
+  mapStringToStringMap: Array<MapStringToStringEntryObj>
+}
+
+export type MapStringToStringEntryObj = {
+  key: string,
+  value: string
+}
+
+export type Proto3Enum = 0 | 1 | 2;
+
