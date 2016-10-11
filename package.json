@@ -3,8 +3,9 @@
   "version": "1.0.0-alpha.0",
   "description": "",
   "bin": "bin/protoc-gen-flow",
+  "files": ["bin"],
   "scripts": {
-    "build": "rollup -c && chmod +x bin/protoc-gen-flow",
+    "build": "rollup -c",
     "prepublish": "npm run build",
     "test": "npm run build && mocha --compilers js:babel-register test/index.js"
   },
