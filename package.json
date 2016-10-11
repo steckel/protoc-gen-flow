@@ -1,9 +1,11 @@
 {
   "name": "protoc-gen-flow",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "",
   "bin": "bin/protoc-gen-flow",
-  "files": ["bin"],
+  "files": [
+    "bin"
+  ],
   "scripts": {
     "build": "rollup -c",
     "prepublish": "npm run build",
