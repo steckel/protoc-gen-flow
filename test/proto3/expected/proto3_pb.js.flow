@@ -1,7 +1,7 @@
 // @flow
 // GENERATED CODE -- DO NOT EDIT!
 
-import type {/* IMPLEMENT ME */} from "./proto2.proto.js";
+import type {/* IMPLEMENT ME */} from "./proto2_pb.js";
 
 declare export class TestProto3 {
   getOptionalInt32(): number;
