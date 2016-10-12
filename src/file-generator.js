@@ -66,6 +66,8 @@ const generateEnumTypes = (ret, enumDescriptor) => {
   return ret;
 };
 
+const getFileName = (depName) => `${depName.match(/(.*)\.proto/)[1]}_pb`;
+
 class FileGenerator {
   constructor(fileDescriptorProto) {
     this.fileDescriptorProto = fileDescriptorProto;
@@ -73,8 +75,8 @@ class FileGenerator {
 
   generate() {
     const file = new CodeGeneratorResponse.File();
-    const strippedName = this.fileDescriptorProto.getName().match(/(.*)\.proto/)[1];
-    file.setName(`${strippedName}_pb.js.flow`);
+    const strippedName = getFileName(this.fileDescriptorProto.getName());
+    file.setName(`${strippedName}.js.flow`);
 
     let content = "// @flow\n";
     content += `${GENERATED_COMMENT}\n`;
@@ -87,7 +89,7 @@ class FileGenerator {
   }
 
   reduceDependencies(ret, dependency, index, array) {
-    ret += `import type {/* IMPLEMENT ME */} from "./${dependency}.js";\n`;
+    ret += `import type {/* IMPLEMENT ME */} from "./${getFileName(dependency)}.js";\n`;
     if (array.length - 1 === index) ret += "\n";
     return ret;
   }
