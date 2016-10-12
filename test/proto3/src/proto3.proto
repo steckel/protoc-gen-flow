@@ -53,6 +53,8 @@ message TestProto3 {
 
   ForeignMessage optional_foreign_message = 19;
   Proto3Enum     optional_foreign_enum    = 22;
+  NestedEnum     optional_nested_enum     = 23;
+  NestedMessage  optional_nested_message  = 24;
 
   repeated    int32 repeated_int32    = 31;
   repeated    int64 repeated_int64    = 32;
@@ -81,6 +83,21 @@ message TestProto3 {
   }
 
   map<string, string> map_string_to_string = 115;
+
+  enum NestedEnum {
+    NESTED_FOO = 0;
+    NESTED_BAR = 1;
+    NESTED_BAZ = 2;
+  }
+
+  message NestedMessage {
+    Type type = 1;
+
+    enum Type {
+      A = 0;
+      B = 1;
+    }
+  }
 }
 
 enum Proto3Enum {
