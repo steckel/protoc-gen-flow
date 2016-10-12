@@ -36,8 +36,8 @@ declare export class TestProto3 {
   setOptionalBytes(val: string): void;
   getOptionalForeignMessage(): ?ForeignMessage;
   setOptionalForeignMessage(val: ?ForeignMessage): void;
-  getOptionalForeignEnum(): Proto3Enum;
-  setOptionalForeignEnum(val: Proto3Enum): void;
+  getOptionalForeignEnum(): Proto3EnumType;
+  setOptionalForeignEnum(val: Proto3EnumType): void;
   getRepeatedInt32List(): Array<number>;
   setRepeatedInt32List(val: Array<number>): void;
   getRepeatedInt64List(): Array<number>;
@@ -70,8 +70,8 @@ declare export class TestProto3 {
   setRepeatedBytesList(val: Array<string>): void;
   getRepeatedForeignMessageList(): Array<ForeignMessage>;
   setRepeatedForeignMessageList(val: Array<ForeignMessage>): void;
-  getRepeatedForeignEnumList(): Array<Proto3Enum>;
-  setRepeatedForeignEnumList(val: Array<Proto3Enum>): void;
+  getRepeatedForeignEnumList(): Array<Proto3EnumType>;
+  setRepeatedForeignEnumList(val: Array<Proto3EnumType>): void;
   getOneofUint32(): number;
   setOneofUint32(val: number): void;
   getOneofForeignMessage(): ?ForeignMessage;
@@ -108,7 +108,7 @@ export type TestProto3Obj = {
   optionalString: string,
   optionalBytes: string,
   optionalForeignMessage: ?ForeignMessageObj,
-  optionalForeignEnum: Proto3Enum,
+  optionalForeignEnum: Proto3EnumType,
   repeatedInt32List: Array<number>,
   repeatedInt64List: Array<number>,
   repeatedUint32List: Array<number>,
@@ -125,7 +125,7 @@ export type TestProto3Obj = {
   repeatedStringList: Array<string>,
   repeatedBytesList: Array<string>,
   repeatedForeignMessageList: Array<ForeignMessageObj>,
-  repeatedForeignEnumList: Array<Proto3Enum>,
+  repeatedForeignEnumList: Array<Proto3EnumType>,
   oneofUint32: number,
   oneofForeignMessage: ?ForeignMessageObj,
   oneofString: string,
@@ -138,5 +138,11 @@ export type MapStringToStringEntryObj = {
   value: string
 }
 
-export type Proto3Enum = 0 | 1 | 2;
+declare export var Proto3Enum: {
+  PROTO3_FOO: 0,
+  PROTO3_BAR: 1,
+  PROTO3_BAZ: 2
+}
+
+export type Proto3EnumType = 0 | 1 | 2;
 

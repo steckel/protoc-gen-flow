@@ -36,8 +36,8 @@ declare export class TestAllTypes {
   setOptionalgroup(val: ?OptionalGroup): void;
   getOptionalForeignMessage(): ?ForeignMessage;
   setOptionalForeignMessage(val: ?ForeignMessage): void;
-  getOptionalForeignEnum(): ForeignEnum;
-  setOptionalForeignEnum(val: ForeignEnum): void;
+  getOptionalForeignEnum(): ForeignEnumType;
+  setOptionalForeignEnum(val: ForeignEnumType): void;
   getRepeatedInt32List(): Array<number>;
   setRepeatedInt32List(val: Array<number>): void;
   getRepeatedInt64List(): Array<number>;
@@ -72,8 +72,8 @@ declare export class TestAllTypes {
   setRepeatedgroupList(val: Array<RepeatedGroup>): void;
   getRepeatedForeignMessageList(): Array<ForeignMessage>;
   setRepeatedForeignMessageList(val: Array<ForeignMessage>): void;
-  getRepeatedForeignEnumList(): Array<ForeignEnum>;
-  setRepeatedForeignEnumList(val: Array<ForeignEnum>): void;
+  getRepeatedForeignEnumList(): Array<ForeignEnumType>;
+  setRepeatedForeignEnumList(val: Array<ForeignEnumType>): void;
   getPackedRepeatedInt32List(): Array<number>;
   setPackedRepeatedInt32List(val: Array<number>): void;
   getPackedRepeatedInt64List(): Array<number>;
@@ -138,7 +138,7 @@ export type TestAllTypesObj = {
   optionalBytes: string,
   optionalgroup: ?OptionalGroupObj,
   optionalForeignMessage: ?ForeignMessageObj,
-  optionalForeignEnum: ForeignEnum,
+  optionalForeignEnum: ForeignEnumType,
   repeatedInt32List: Array<number>,
   repeatedInt64List: Array<number>,
   repeatedUint32List: Array<number>,
@@ -156,7 +156,7 @@ export type TestAllTypesObj = {
   repeatedBytesList: Array<string>,
   repeatedgroupList: Array<RepeatedGroupObj>,
   repeatedForeignMessageList: Array<ForeignMessageObj>,
-  repeatedForeignEnumList: Array<ForeignEnum>,
+  repeatedForeignEnumList: Array<ForeignEnumType>,
   packedRepeatedInt32List: Array<number>,
   packedRepeatedInt64List: Array<number>,
   packedRepeatedUint32List: Array<number>,
@@ -324,7 +324,7 @@ export type MapStringDoubleEntryObj = {
 
 export type MapStringEnumEntryObj = {
   key: string,
-  value: MapValueEnum
+  value: MapValueEnumType
 }
 
 export type MapStringMsgEntryObj = {
@@ -369,7 +369,19 @@ export type MapValueMessageObj = {
   foo: number
 }
 
-export type ForeignEnum = 4 | 5 | 6;
+declare export var ForeignEnum: {
+  FOREIGN_FOO: 4,
+  FOREIGN_BAR: 5,
+  FOREIGN_BAZ: 6
+}
 
-export type MapValueEnum = 0 | 1 | 2;
+export type ForeignEnumType = 4 | 5 | 6;
+
+declare export var MapValueEnum: {
+  MAP_VALUE_FOO: 0,
+  MAP_VALUE_BAR: 1,
+  MAP_VALUE_BAZ: 2
+}
+
+export type MapValueEnumType = 0 | 1 | 2;
 

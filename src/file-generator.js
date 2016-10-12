@@ -46,7 +46,16 @@ ${INDENT}static toObject(includeInstance: boolean, msg: ${name}): ${name}Obj;
 };
 
 const generateEnumTypes = (ret, enumDescriptor) => {
-  ret += `export type ${enumDescriptor.getName()} = `;
+  ret += `declare export var ${enumDescriptor.getName()}: {\n`;
+  ret += enumDescriptor.getValueList().reduce((_ret, value, i, list) => {
+    _ret += `${INDENT}${value.getName()}: ${value.getNumber()}`
+    if (i !== list.length -1) _ret += ",\n";
+    return _ret;
+  }, "");
+  ret += "\n";
+  ret += "}\n";
+  ret += "\n";
+  ret += `export type ${enumDescriptor.getName()}Type = `;
   ret += enumDescriptor.getValueList().reduce((_ret, value, i, list) => {
     _ret += value.getNumber();
     if (i !== list.length -1) _ret += " | ";
@@ -250,7 +259,7 @@ class FileGenerator {
       }
       case FieldDescriptorProto.Type.TYPE_ENUM: {
         const type = typeName.split(".");
-        return type[type.length - 1];
+        return `${type[type.length - 1]}Type`;
       }
       default:
         return "ERROR";
