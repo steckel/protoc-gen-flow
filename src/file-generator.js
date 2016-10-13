@@ -216,7 +216,11 @@ class FileGenerator {
       type = isMap ? "any" : this.getType$type(fieldDescriptor, toObject);
     }
 
-    return `${partOne}${type}${partTwo}`;
+    if (Array.isArray(type)) {
+      return type.map((t) => `${partOne}${t}${partTwo}`).join("|");
+    } else {
+      return `${partOne}${type}${partTwo}`;
+    }
   }
 
   getType$label(fieldDescriptor) {
@@ -253,7 +257,7 @@ class FileGenerator {
       case FieldDescriptorProto.Type.TYPE_STRING:
         return "string";
       case FieldDescriptorProto.Type.TYPE_BYTES:
-        return "string";
+        return ["string", "Uint8Array"];
       case FieldDescriptorProto.Type.TYPE_GROUP:
       case FieldDescriptorProto.Type.TYPE_MESSAGE: {
         const type = typeName.split(".");

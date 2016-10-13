@@ -32,8 +32,8 @@ declare export class TestProto3 {
   setOptionalBool(val: boolean): void;
   getOptionalString(): string;
   setOptionalString(val: string): void;
-  getOptionalBytes(): string;
-  setOptionalBytes(val: string): void;
+  getOptionalBytes(): string|Uint8Array;
+  setOptionalBytes(val: string|Uint8Array): void;
   getOptionalForeignMessage(): ?ForeignMessage;
   setOptionalForeignMessage(val: ?ForeignMessage): void;
   getOptionalForeignEnum(): Proto3EnumType;
@@ -66,8 +66,8 @@ declare export class TestProto3 {
   setRepeatedBoolList(val: Array<boolean>): void;
   getRepeatedStringList(): Array<string>;
   setRepeatedStringList(val: Array<string>): void;
-  getRepeatedBytesList(): Array<string>;
-  setRepeatedBytesList(val: Array<string>): void;
+  getRepeatedBytesList(): Array<string>|Array<Uint8Array>;
+  setRepeatedBytesList(val: Array<string>|Array<Uint8Array>): void;
   getRepeatedForeignMessageList(): Array<ForeignMessage>;
   setRepeatedForeignMessageList(val: Array<ForeignMessage>): void;
   getRepeatedForeignEnumList(): Array<Proto3EnumType>;
@@ -78,8 +78,8 @@ declare export class TestProto3 {
   setOneofForeignMessage(val: ?ForeignMessage): void;
   getOneofString(): string;
   setOneofString(val: string): void;
-  getOneofBytes(): string;
-  setOneofBytes(val: string): void;
+  getOneofBytes(): string|Uint8Array;
+  setOneofBytes(val: string|Uint8Array): void;
   getMapStringToStringMap(): any;
   toObject(includeInstance: boolean): TestProto3Obj;
   serializeBinary(): Uint8Array;
@@ -106,7 +106,7 @@ export type TestProto3Obj = {
   optionalDouble: number,
   optionalBool: boolean,
   optionalString: string,
-  optionalBytes: string,
+  optionalBytes: string|Uint8Array,
   optionalForeignMessage: ?ForeignMessageObj,
   optionalForeignEnum: Proto3EnumType,
   repeatedInt32List: Array<number>,
@@ -123,13 +123,13 @@ export type TestProto3Obj = {
   repeatedDoubleList: Array<number>,
   repeatedBoolList: Array<boolean>,
   repeatedStringList: Array<string>,
-  repeatedBytesList: Array<string>,
+  repeatedBytesList: Array<string>|Array<Uint8Array>,
   repeatedForeignMessageList: Array<ForeignMessageObj>,
   repeatedForeignEnumList: Array<Proto3EnumType>,
   oneofUint32: number,
   oneofForeignMessage: ?ForeignMessageObj,
   oneofString: string,
-  oneofBytes: string,
+  oneofBytes: string|Uint8Array,
   mapStringToStringMap: Array<MapStringToStringEntryObj>
 }
 
