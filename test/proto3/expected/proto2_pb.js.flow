@@ -108,14 +108,14 @@ declare export class TestAllTypes {
   setOneofString(val: string): void;
   getOneofBytes(): string|Uint8Array;
   setOneofBytes(val: string|Uint8Array): void;
-  toObject(includeInstance: boolean): TestAllTypesObj;
+  toObject(opt_includeInstance: ?boolean): TestAllTypesObj;
   serializeBinary(): Uint8Array;
   serializeBinaryToWriter(writer: any): void;
   cloneMessage(): TestAllTypes;
   static deserializeBinary(bytes: any): TestAllTypes;
   static deserializeBinaryFromReader(msg: TestAllTypes, reader: any): TestAllTypes;
   static serializeBinaryToWriter(message: TestAllTypes, writer: any): void;
-  static toObject(includeInstance: boolean, msg: TestAllTypes): TestAllTypesObj;
+  static toObject(includeInstance: boolean|typeof undefined, msg: TestAllTypes): TestAllTypesObj;
   static OptionalGroup: typeof OptionalGroup;
   static RepeatedGroup: typeof RepeatedGroup;
 }
@@ -179,14 +179,14 @@ export type TestAllTypesObj = {
 declare export class OptionalGroup {
   getA(): number;
   setA(val: number): void;
-  toObject(includeInstance: boolean): OptionalGroupObj;
+  toObject(opt_includeInstance: ?boolean): OptionalGroupObj;
   serializeBinary(): Uint8Array;
   serializeBinaryToWriter(writer: any): void;
   cloneMessage(): OptionalGroup;
   static deserializeBinary(bytes: any): OptionalGroup;
   static deserializeBinaryFromReader(msg: OptionalGroup, reader: any): OptionalGroup;
   static serializeBinaryToWriter(message: OptionalGroup, writer: any): void;
-  static toObject(includeInstance: boolean, msg: OptionalGroup): OptionalGroupObj;
+  static toObject(includeInstance: boolean|typeof undefined, msg: OptionalGroup): OptionalGroupObj;
 }
 
 export type OptionalGroupObj = {
@@ -196,14 +196,14 @@ export type OptionalGroupObj = {
 declare export class RepeatedGroup {
   getA(): number;
   setA(val: number): void;
-  toObject(includeInstance: boolean): RepeatedGroupObj;
+  toObject(opt_includeInstance: ?boolean): RepeatedGroupObj;
   serializeBinary(): Uint8Array;
   serializeBinaryToWriter(writer: any): void;
   cloneMessage(): RepeatedGroup;
   static deserializeBinary(bytes: any): RepeatedGroup;
   static deserializeBinaryFromReader(msg: RepeatedGroup, reader: any): RepeatedGroup;
   static serializeBinaryToWriter(message: RepeatedGroup, writer: any): void;
-  static toObject(includeInstance: boolean, msg: RepeatedGroup): RepeatedGroupObj;
+  static toObject(includeInstance: boolean|typeof undefined, msg: RepeatedGroup): RepeatedGroupObj;
 }
 
 export type RepeatedGroupObj = {
@@ -213,14 +213,14 @@ export type RepeatedGroupObj = {
 declare export class ForeignMessage {
   getC(): number;
   setC(val: number): void;
-  toObject(includeInstance: boolean): ForeignMessageObj;
+  toObject(opt_includeInstance: ?boolean): ForeignMessageObj;
   serializeBinary(): Uint8Array;
   serializeBinaryToWriter(writer: any): void;
   cloneMessage(): ForeignMessage;
   static deserializeBinary(bytes: any): ForeignMessage;
   static deserializeBinaryFromReader(msg: ForeignMessage, reader: any): ForeignMessage;
   static serializeBinaryToWriter(message: ForeignMessage, writer: any): void;
-  static toObject(includeInstance: boolean, msg: ForeignMessage): ForeignMessageObj;
+  static toObject(includeInstance: boolean|typeof undefined, msg: ForeignMessage): ForeignMessageObj;
 }
 
 export type ForeignMessageObj = {
@@ -228,14 +228,14 @@ export type ForeignMessageObj = {
 }
 
 declare export class TestExtendable {
-  toObject(includeInstance: boolean): TestExtendableObj;
+  toObject(opt_includeInstance: ?boolean): TestExtendableObj;
   serializeBinary(): Uint8Array;
   serializeBinaryToWriter(writer: any): void;
   cloneMessage(): TestExtendable;
   static deserializeBinary(bytes: any): TestExtendable;
   static deserializeBinaryFromReader(msg: TestExtendable, reader: any): TestExtendable;
   static serializeBinaryToWriter(message: TestExtendable, writer: any): void;
-  static toObject(includeInstance: boolean, msg: TestExtendable): TestExtendableObj;
+  static toObject(includeInstance: boolean|typeof undefined, msg: TestExtendable): TestExtendableObj;
 }
 
 export type TestExtendableObj = {
@@ -244,14 +244,14 @@ export type TestExtendableObj = {
 declare export class ExtendsWithMessage {
   getFoo(): number;
   setFoo(val: number): void;
-  toObject(includeInstance: boolean): ExtendsWithMessageObj;
+  toObject(opt_includeInstance: ?boolean): ExtendsWithMessageObj;
   serializeBinary(): Uint8Array;
   serializeBinaryToWriter(writer: any): void;
   cloneMessage(): ExtendsWithMessage;
   static deserializeBinary(bytes: any): ExtendsWithMessage;
   static deserializeBinaryFromReader(msg: ExtendsWithMessage, reader: any): ExtendsWithMessage;
   static serializeBinaryToWriter(message: ExtendsWithMessage, writer: any): void;
-  static toObject(includeInstance: boolean, msg: ExtendsWithMessage): ExtendsWithMessageObj;
+  static toObject(includeInstance: boolean|typeof undefined, msg: ExtendsWithMessage): ExtendsWithMessageObj;
 }
 
 export type ExtendsWithMessageObj = {
@@ -272,14 +272,14 @@ declare export class TestMapFields {
   getTestMapFields(): ?TestMapFields;
   setTestMapFields(val: ?TestMapFields): void;
   getMapStringTestmapfieldsMap(): any;
-  toObject(includeInstance: boolean): TestMapFieldsObj;
+  toObject(opt_includeInstance: ?boolean): TestMapFieldsObj;
   serializeBinary(): Uint8Array;
   serializeBinaryToWriter(writer: any): void;
   cloneMessage(): TestMapFields;
   static deserializeBinary(bytes: any): TestMapFields;
   static deserializeBinaryFromReader(msg: TestMapFields, reader: any): TestMapFields;
   static serializeBinaryToWriter(message: TestMapFields, writer: any): void;
-  static toObject(includeInstance: boolean, msg: TestMapFields): TestMapFieldsObj;
+  static toObject(includeInstance: boolean|typeof undefined, msg: TestMapFields): TestMapFieldsObj;
 }
 
 export type TestMapFieldsObj = {
@@ -355,14 +355,14 @@ export type MapStringTestmapfieldsEntryObj = {
 declare export class MapValueMessage {
   getFoo(): number;
   setFoo(val: number): void;
-  toObject(includeInstance: boolean): MapValueMessageObj;
+  toObject(opt_includeInstance: ?boolean): MapValueMessageObj;
   serializeBinary(): Uint8Array;
   serializeBinaryToWriter(writer: any): void;
   cloneMessage(): MapValueMessage;
   static deserializeBinary(bytes: any): MapValueMessage;
   static deserializeBinaryFromReader(msg: MapValueMessage, reader: any): MapValueMessage;
   static serializeBinaryToWriter(message: MapValueMessage, writer: any): void;
-  static toObject(includeInstance: boolean, msg: MapValueMessage): MapValueMessageObj;
+  static toObject(includeInstance: boolean|typeof undefined, msg: MapValueMessage): MapValueMessageObj;
 }
 
 export type MapValueMessageObj = {

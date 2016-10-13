@@ -34,14 +34,14 @@ const isNullable = (type) => {
 };
 
 const generateOtherMethods = (name) => {
-  return `${INDENT}toObject(includeInstance: boolean): ${name}Obj;
+  return `${INDENT}toObject(opt_includeInstance: ?boolean): ${name}Obj;
 ${INDENT}serializeBinary(): Uint8Array;
 ${INDENT}serializeBinaryToWriter(writer: any): void;
 ${INDENT}cloneMessage(): ${name};
 ${INDENT}static deserializeBinary(bytes: any): ${name};
 ${INDENT}static deserializeBinaryFromReader(msg: ${name}, reader: any): ${name};
 ${INDENT}static serializeBinaryToWriter(message: ${name}, writer: any): void;
-${INDENT}static toObject(includeInstance: boolean, msg: ${name}): ${name}Obj;
+${INDENT}static toObject(includeInstance: boolean|typeof undefined, msg: ${name}): ${name}Obj;
 `;
 };
 
