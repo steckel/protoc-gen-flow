@@ -81,14 +81,14 @@ declare export class TestProto3 {
   getOneofBytes(): string|Uint8Array;
   setOneofBytes(val: string|Uint8Array): void;
   getMapStringToStringMap(): any;
-  toObject(includeInstance: boolean): TestProto3Obj;
+  toObject(opt_includeInstance: ?boolean): TestProto3Obj;
   serializeBinary(): Uint8Array;
   serializeBinaryToWriter(writer: any): void;
   cloneMessage(): TestProto3;
   static deserializeBinary(bytes: any): TestProto3;
   static deserializeBinaryFromReader(msg: TestProto3, reader: any): TestProto3;
   static serializeBinaryToWriter(message: TestProto3, writer: any): void;
-  static toObject(includeInstance: boolean, msg: TestProto3): TestProto3Obj;
+  static toObject(includeInstance: boolean|typeof undefined, msg: TestProto3): TestProto3Obj;
 }
 
 export type TestProto3Obj = {
