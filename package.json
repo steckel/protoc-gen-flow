@@ -1,6 +1,6 @@
 {
   "name": "protoc-gen-flow",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "",
   "bin": "bin/protoc-gen-flow",
   "files": [
