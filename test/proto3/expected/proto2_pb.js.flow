@@ -30,8 +30,8 @@ declare export class TestAllTypes {
   setOptionalBool(val: boolean): void;
   getOptionalString(): string;
   setOptionalString(val: string): void;
-  getOptionalBytes(): string;
-  setOptionalBytes(val: string): void;
+  getOptionalBytes(): string|Uint8Array;
+  setOptionalBytes(val: string|Uint8Array): void;
   getOptionalgroup(): ?OptionalGroup;
   setOptionalgroup(val: ?OptionalGroup): void;
   getOptionalForeignMessage(): ?ForeignMessage;
@@ -66,8 +66,8 @@ declare export class TestAllTypes {
   setRepeatedBoolList(val: Array<boolean>): void;
   getRepeatedStringList(): Array<string>;
   setRepeatedStringList(val: Array<string>): void;
-  getRepeatedBytesList(): Array<string>;
-  setRepeatedBytesList(val: Array<string>): void;
+  getRepeatedBytesList(): Array<string>|Array<Uint8Array>;
+  setRepeatedBytesList(val: Array<string>|Array<Uint8Array>): void;
   getRepeatedgroupList(): Array<RepeatedGroup>;
   setRepeatedgroupList(val: Array<RepeatedGroup>): void;
   getRepeatedForeignMessageList(): Array<ForeignMessage>;
@@ -106,8 +106,8 @@ declare export class TestAllTypes {
   setOneofForeignMessage(val: ?ForeignMessage): void;
   getOneofString(): string;
   setOneofString(val: string): void;
-  getOneofBytes(): string;
-  setOneofBytes(val: string): void;
+  getOneofBytes(): string|Uint8Array;
+  setOneofBytes(val: string|Uint8Array): void;
   toObject(includeInstance: boolean): TestAllTypesObj;
   serializeBinary(): Uint8Array;
   serializeBinaryToWriter(writer: any): void;
@@ -135,7 +135,7 @@ export type TestAllTypesObj = {
   optionalDouble: number,
   optionalBool: boolean,
   optionalString: string,
-  optionalBytes: string,
+  optionalBytes: string|Uint8Array,
   optionalgroup: ?OptionalGroupObj,
   optionalForeignMessage: ?ForeignMessageObj,
   optionalForeignEnum: ForeignEnumType,
@@ -153,7 +153,7 @@ export type TestAllTypesObj = {
   repeatedDoubleList: Array<number>,
   repeatedBoolList: Array<boolean>,
   repeatedStringList: Array<string>,
-  repeatedBytesList: Array<string>,
+  repeatedBytesList: Array<string>|Array<Uint8Array>,
   repeatedgroupList: Array<RepeatedGroupObj>,
   repeatedForeignMessageList: Array<ForeignMessageObj>,
   repeatedForeignEnumList: Array<ForeignEnumType>,
@@ -173,7 +173,7 @@ export type TestAllTypesObj = {
   oneofUint32: number,
   oneofForeignMessage: ?ForeignMessageObj,
   oneofString: string,
-  oneofBytes: string
+  oneofBytes: string|Uint8Array
 }
 
 declare export class OptionalGroup {
