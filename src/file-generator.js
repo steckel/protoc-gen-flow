@@ -106,7 +106,7 @@ const reducerForEnumTypes = (parentDescriptors) => (ret, enumDescriptor, index, 
 
 const reducerForNestedStaticEnums = (prefix) => (ret, enumDescriptorProto, index, collection) => {
   const name = enumDescriptorProto.getName();
-  ret += `${INDENT}static ${name}: typeof ${prefix}$${name};\n`;
+  ret += `${INDENT}static ${name}: ${prefix}$${name};\n`;
   return ret;
 };
 
