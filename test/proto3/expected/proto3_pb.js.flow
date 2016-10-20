@@ -94,7 +94,7 @@ declare export class TestProto3 {
   static serializeBinaryToWriter(message: TestProto3, writer: any): void;
   static toObject(includeInstance: boolean|typeof undefined, msg: TestProto3): TestProto3Obj;
   static NestedMessage: typeof TestProto3$NestedMessage;
-  static NestedEnum: typeof TestProto3$NestedEnum;
+  static NestedEnum: TestProto3$NestedEnum;
 }
 
 type TestProto3$NestedEnum = {
@@ -165,7 +165,7 @@ declare export class TestProto3$NestedMessage {
   static deserializeBinaryFromReader(msg: TestProto3$NestedMessage, reader: any): TestProto3$NestedMessage;
   static serializeBinaryToWriter(message: TestProto3$NestedMessage, writer: any): void;
   static toObject(includeInstance: boolean|typeof undefined, msg: TestProto3$NestedMessage): TestProto3$NestedMessageObj;
-  static Type: typeof TestProto3$NestedMessage$Type;
+  static Type: TestProto3$NestedMessage$Type;
 }
 
 type TestProto3$NestedMessage$Type = {
