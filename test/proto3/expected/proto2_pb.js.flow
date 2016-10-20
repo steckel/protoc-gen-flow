@@ -32,8 +32,8 @@ declare export class TestAllTypes {
   setOptionalString(val: string): void;
   getOptionalBytes(): string|Uint8Array;
   setOptionalBytes(val: string|Uint8Array): void;
-  getOptionalgroup(): ?OptionalGroup;
-  setOptionalgroup(val: ?OptionalGroup): void;
+  getOptionalgroup(): ?TestAllTypes$OptionalGroup;
+  setOptionalgroup(val: ?TestAllTypes$OptionalGroup): void;
   getOptionalForeignMessage(): ?ForeignMessage;
   setOptionalForeignMessage(val: ?ForeignMessage): void;
   getOptionalForeignEnum(): ForeignEnumType;
@@ -68,8 +68,8 @@ declare export class TestAllTypes {
   setRepeatedStringList(val: Array<string>): void;
   getRepeatedBytesList(): Array<string>|Array<Uint8Array>;
   setRepeatedBytesList(val: Array<string>|Array<Uint8Array>): void;
-  getRepeatedgroupList(): Array<RepeatedGroup>;
-  setRepeatedgroupList(val: Array<RepeatedGroup>): void;
+  getRepeatedgroupList(): Array<TestAllTypes$RepeatedGroup>;
+  setRepeatedgroupList(val: Array<TestAllTypes$RepeatedGroup>): void;
   getRepeatedForeignMessageList(): Array<ForeignMessage>;
   setRepeatedForeignMessageList(val: Array<ForeignMessage>): void;
   getRepeatedForeignEnumList(): Array<ForeignEnumType>;
@@ -116,8 +116,8 @@ declare export class TestAllTypes {
   static deserializeBinaryFromReader(msg: TestAllTypes, reader: any): TestAllTypes;
   static serializeBinaryToWriter(message: TestAllTypes, writer: any): void;
   static toObject(includeInstance: boolean|typeof undefined, msg: TestAllTypes): TestAllTypesObj;
-  static OptionalGroup: typeof OptionalGroup;
-  static RepeatedGroup: typeof RepeatedGroup;
+  static OptionalGroup: typeof TestAllTypes$OptionalGroup;
+  static RepeatedGroup: typeof TestAllTypes$RepeatedGroup;
 }
 
 export type TestAllTypesObj = {
@@ -136,7 +136,7 @@ export type TestAllTypesObj = {
   optionalBool: boolean,
   optionalString: string,
   optionalBytes: string|Uint8Array,
-  optionalgroup: ?OptionalGroupObj,
+  optionalgroup: ?TestAllTypes$OptionalGroupObj,
   optionalForeignMessage: ?ForeignMessageObj,
   optionalForeignEnum: ForeignEnumType,
   repeatedInt32List: Array<number>,
@@ -154,7 +154,7 @@ export type TestAllTypesObj = {
   repeatedBoolList: Array<boolean>,
   repeatedStringList: Array<string>,
   repeatedBytesList: Array<string>|Array<Uint8Array>,
-  repeatedgroupList: Array<RepeatedGroupObj>,
+  repeatedgroupList: Array<TestAllTypes$RepeatedGroupObj>,
   repeatedForeignMessageList: Array<ForeignMessageObj>,
   repeatedForeignEnumList: Array<ForeignEnumType>,
   packedRepeatedInt32List: Array<number>,
@@ -176,37 +176,37 @@ export type TestAllTypesObj = {
   oneofBytes: string|Uint8Array
 }
 
-declare export class OptionalGroup {
+declare export class TestAllTypes$OptionalGroup {
   getA(): number;
   setA(val: number): void;
-  toObject(opt_includeInstance: ?boolean): OptionalGroupObj;
+  toObject(opt_includeInstance: ?boolean): TestAllTypes$OptionalGroupObj;
   serializeBinary(): Uint8Array;
   serializeBinaryToWriter(writer: any): void;
-  cloneMessage(): OptionalGroup;
-  static deserializeBinary(bytes: any): OptionalGroup;
-  static deserializeBinaryFromReader(msg: OptionalGroup, reader: any): OptionalGroup;
-  static serializeBinaryToWriter(message: OptionalGroup, writer: any): void;
-  static toObject(includeInstance: boolean|typeof undefined, msg: OptionalGroup): OptionalGroupObj;
+  cloneMessage(): TestAllTypes$OptionalGroup;
+  static deserializeBinary(bytes: any): TestAllTypes$OptionalGroup;
+  static deserializeBinaryFromReader(msg: TestAllTypes$OptionalGroup, reader: any): TestAllTypes$OptionalGroup;
+  static serializeBinaryToWriter(message: TestAllTypes$OptionalGroup, writer: any): void;
+  static toObject(includeInstance: boolean|typeof undefined, msg: TestAllTypes$OptionalGroup): TestAllTypes$OptionalGroupObj;
 }
 
-export type OptionalGroupObj = {
+export type TestAllTypes$OptionalGroupObj = {
   a: number
 }
 
-declare export class RepeatedGroup {
+declare export class TestAllTypes$RepeatedGroup {
   getA(): number;
   setA(val: number): void;
-  toObject(opt_includeInstance: ?boolean): RepeatedGroupObj;
+  toObject(opt_includeInstance: ?boolean): TestAllTypes$RepeatedGroupObj;
   serializeBinary(): Uint8Array;
   serializeBinaryToWriter(writer: any): void;
-  cloneMessage(): RepeatedGroup;
-  static deserializeBinary(bytes: any): RepeatedGroup;
-  static deserializeBinaryFromReader(msg: RepeatedGroup, reader: any): RepeatedGroup;
-  static serializeBinaryToWriter(message: RepeatedGroup, writer: any): void;
-  static toObject(includeInstance: boolean|typeof undefined, msg: RepeatedGroup): RepeatedGroupObj;
+  cloneMessage(): TestAllTypes$RepeatedGroup;
+  static deserializeBinary(bytes: any): TestAllTypes$RepeatedGroup;
+  static deserializeBinaryFromReader(msg: TestAllTypes$RepeatedGroup, reader: any): TestAllTypes$RepeatedGroup;
+  static serializeBinaryToWriter(message: TestAllTypes$RepeatedGroup, writer: any): void;
+  static toObject(includeInstance: boolean|typeof undefined, msg: TestAllTypes$RepeatedGroup): TestAllTypes$RepeatedGroupObj;
 }
 
-export type RepeatedGroupObj = {
+export type TestAllTypes$RepeatedGroupObj = {
   a: number
 }
 
@@ -283,71 +283,71 @@ declare export class TestMapFields {
 }
 
 export type TestMapFieldsObj = {
-  mapStringStringMap: Array<MapStringStringEntryObj>,
-  mapStringInt32Map: Array<MapStringInt32EntryObj>,
-  mapStringInt64Map: Array<MapStringInt64EntryObj>,
-  mapStringBoolMap: Array<MapStringBoolEntryObj>,
-  mapStringDoubleMap: Array<MapStringDoubleEntryObj>,
-  mapStringEnumMap: Array<MapStringEnumEntryObj>,
-  mapStringMsgMap: Array<MapStringMsgEntryObj>,
-  mapInt32StringMap: Array<MapInt32StringEntryObj>,
-  mapInt64StringMap: Array<MapInt64StringEntryObj>,
-  mapBoolStringMap: Array<MapBoolStringEntryObj>,
+  mapStringStringMap: Array<TestMapFields$MapStringStringEntryObj>,
+  mapStringInt32Map: Array<TestMapFields$MapStringInt32EntryObj>,
+  mapStringInt64Map: Array<TestMapFields$MapStringInt64EntryObj>,
+  mapStringBoolMap: Array<TestMapFields$MapStringBoolEntryObj>,
+  mapStringDoubleMap: Array<TestMapFields$MapStringDoubleEntryObj>,
+  mapStringEnumMap: Array<TestMapFields$MapStringEnumEntryObj>,
+  mapStringMsgMap: Array<TestMapFields$MapStringMsgEntryObj>,
+  mapInt32StringMap: Array<TestMapFields$MapInt32StringEntryObj>,
+  mapInt64StringMap: Array<TestMapFields$MapInt64StringEntryObj>,
+  mapBoolStringMap: Array<TestMapFields$MapBoolStringEntryObj>,
   testMapFields: ?TestMapFieldsObj,
-  mapStringTestmapfieldsMap: Array<MapStringTestmapfieldsEntryObj>
+  mapStringTestmapfieldsMap: Array<TestMapFields$MapStringTestmapfieldsEntryObj>
 }
 
-export type MapStringStringEntryObj = {
+export type TestMapFields$MapStringStringEntryObj = {
   key: string,
   value: string
 }
 
-export type MapStringInt32EntryObj = {
+export type TestMapFields$MapStringInt32EntryObj = {
   key: string,
   value: number
 }
 
-export type MapStringInt64EntryObj = {
+export type TestMapFields$MapStringInt64EntryObj = {
   key: string,
   value: number
 }
 
-export type MapStringBoolEntryObj = {
+export type TestMapFields$MapStringBoolEntryObj = {
   key: string,
   value: boolean
 }
 
-export type MapStringDoubleEntryObj = {
+export type TestMapFields$MapStringDoubleEntryObj = {
   key: string,
   value: number
 }
 
-export type MapStringEnumEntryObj = {
+export type TestMapFields$MapStringEnumEntryObj = {
   key: string,
   value: MapValueEnumType
 }
 
-export type MapStringMsgEntryObj = {
+export type TestMapFields$MapStringMsgEntryObj = {
   key: string,
   value: ?MapValueMessageObj
 }
 
-export type MapInt32StringEntryObj = {
+export type TestMapFields$MapInt32StringEntryObj = {
   key: number,
   value: string
 }
 
-export type MapInt64StringEntryObj = {
+export type TestMapFields$MapInt64StringEntryObj = {
   key: number,
   value: string
 }
 
-export type MapBoolStringEntryObj = {
+export type TestMapFields$MapBoolStringEntryObj = {
   key: boolean,
   value: string
 }
 
-export type MapStringTestmapfieldsEntryObj = {
+export type TestMapFields$MapStringTestmapfieldsEntryObj = {
   key: string,
   value: ?TestMapFieldsObj
 }

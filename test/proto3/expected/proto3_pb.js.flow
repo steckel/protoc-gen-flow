@@ -38,6 +38,10 @@ declare export class TestProto3 {
   setOptionalForeignMessage(val: ?ForeignMessage): void;
   getOptionalForeignEnum(): Proto3EnumType;
   setOptionalForeignEnum(val: Proto3EnumType): void;
+  getOptionalNestedEnum(): TestProto3$NestedEnumType;
+  setOptionalNestedEnum(val: TestProto3$NestedEnumType): void;
+  getOptionalNestedMessage(): ?TestProto3$NestedMessage;
+  setOptionalNestedMessage(val: ?TestProto3$NestedMessage): void;
   getRepeatedInt32List(): Array<number>;
   setRepeatedInt32List(val: Array<number>): void;
   getRepeatedInt64List(): Array<number>;
@@ -89,7 +93,17 @@ declare export class TestProto3 {
   static deserializeBinaryFromReader(msg: TestProto3, reader: any): TestProto3;
   static serializeBinaryToWriter(message: TestProto3, writer: any): void;
   static toObject(includeInstance: boolean|typeof undefined, msg: TestProto3): TestProto3Obj;
+  static NestedMessage: typeof TestProto3$NestedMessage;
+  static NestedEnum: typeof TestProto3$NestedEnum;
 }
+
+type TestProto3$NestedEnum = {
+  NESTED_FOO: 0,
+  NESTED_BAR: 1,
+  NESTED_BAZ: 2
+}
+
+type TestProto3$NestedEnumType = 0 | 1 | 2;
 
 export type TestProto3Obj = {
   optionalInt32: number,
@@ -109,6 +123,8 @@ export type TestProto3Obj = {
   optionalBytes: string|Uint8Array,
   optionalForeignMessage: ?ForeignMessageObj,
   optionalForeignEnum: Proto3EnumType,
+  optionalNestedEnum: TestProto3$NestedEnumType,
+  optionalNestedMessage: ?TestProto3$NestedMessageObj,
   repeatedInt32List: Array<number>,
   repeatedInt64List: Array<number>,
   repeatedUint32List: Array<number>,
@@ -130,12 +146,37 @@ export type TestProto3Obj = {
   oneofForeignMessage: ?ForeignMessageObj,
   oneofString: string,
   oneofBytes: string|Uint8Array,
-  mapStringToStringMap: Array<MapStringToStringEntryObj>
+  mapStringToStringMap: Array<TestProto3$MapStringToStringEntryObj>
 }
 
-export type MapStringToStringEntryObj = {
+export type TestProto3$MapStringToStringEntryObj = {
   key: string,
   value: string
+}
+
+declare export class TestProto3$NestedMessage {
+  getType(): TestProto3$NestedMessage$TypeType;
+  setType(val: TestProto3$NestedMessage$TypeType): void;
+  toObject(opt_includeInstance: ?boolean): TestProto3$NestedMessageObj;
+  serializeBinary(): Uint8Array;
+  serializeBinaryToWriter(writer: any): void;
+  cloneMessage(): TestProto3$NestedMessage;
+  static deserializeBinary(bytes: any): TestProto3$NestedMessage;
+  static deserializeBinaryFromReader(msg: TestProto3$NestedMessage, reader: any): TestProto3$NestedMessage;
+  static serializeBinaryToWriter(message: TestProto3$NestedMessage, writer: any): void;
+  static toObject(includeInstance: boolean|typeof undefined, msg: TestProto3$NestedMessage): TestProto3$NestedMessageObj;
+  static Type: typeof TestProto3$NestedMessage$Type;
+}
+
+type TestProto3$NestedMessage$Type = {
+  A: 0,
+  B: 1
+}
+
+type TestProto3$NestedMessage$TypeType = 0 | 1;
+
+export type TestProto3$NestedMessageObj = {
+  type: TestProto3$NestedMessage$TypeType
 }
 
 declare export var Proto3Enum: {

@@ -5,6 +5,22 @@ import {camelize, pascalCase} from "./utils";
 const GENERATED_COMMENT = "// GENERATED CODE -- DO NOT EDIT!";
 const INDENT = "  ";
 
+
+const escapeRegExp = (str) => str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+
+/**
+ * Resolves a potentially fully-qualifief typename (e.g. .com.foo.Baz.Bar) with
+ * its package name (com.foo). The output of which would be Baz$Bar.
+ */
+const resolveTypeName = (typeName, pkg) => {
+  const fullyQualified = typeName.match(/^\.(.*)$/);
+  if (fullyQualified == null) throw new Error("Not what I expected");
+  const [_, match] = fullyQualified; // "jspb.test.MapValueEnum"
+  if (match == null) throw new Error("Expected a match");
+  const regexp = new RegExp("^" + escapeRegExp(pkg) + "\.");
+  return match.replace(regexp, "").replace(/\./g, "$");
+};
+
 const isNullable = (type) => {
   switch (type) {
     case FieldDescriptorProto.Type.TYPE_DOUBLE:
@@ -66,6 +82,35 @@ const generateEnumTypes = (ret, enumDescriptor) => {
   return ret;
 };
 
+const reducerForEnumTypes = (parentDescriptors) => (ret, enumDescriptor, index, collection) => {
+  const prefix = parentDescriptors.map((desc) => desc.getName()).join("$");
+  ret += `type ${prefix}$${enumDescriptor.getName()} = {\n`;
+  ret += enumDescriptor.getValueList().reduce((_ret, value, i, list) => {
+    _ret += `${INDENT}${value.getName()}: ${value.getNumber()}`
+    if (i !== list.length -1) _ret += ",\n";
+    return _ret;
+  }, "");
+  ret += "\n";
+  ret += "}\n";
+  ret += "\n";
+  ret += `type ${prefix}$${enumDescriptor.getName()}Type = `;
+  ret += enumDescriptor.getValueList().reduce((_ret, value, i, list) => {
+    _ret += value.getNumber();
+    if (i !== list.length -1) _ret += " | ";
+    return _ret;
+  }, "");
+  ret += ";\n";
+  ret += "\n";
+  return ret;
+};
+
+const reducerForNestedStaticEnums = (prefix) => (ret, enumDescriptorProto, index, collection) => {
+  const name = enumDescriptorProto.getName();
+  ret += `${INDENT}static ${name}: typeof ${prefix}$${name};\n`;
+  return ret;
+};
+
+
 const getFileName = (depName) => `${depName.match(/(.*)\.proto/)[1]}_pb`;
 
 class FileGenerator {
@@ -82,7 +127,7 @@ class FileGenerator {
     content += `${GENERATED_COMMENT}\n`;
     content += "\n";
     content += this.fileDescriptorProto.getDependencyList().reduce(this.reduceDependencies, "");
-    content += this.fileDescriptorProto.getMessageTypeList().reduce(this.reduceMessageTypes.bind(this), "");
+    content += this.fileDescriptorProto.getMessageTypeList().reduce(this.reducerForMessageTypes().bind(this), "");
     content += this.fileDescriptorProto.getEnumTypeList().reduce(generateEnumTypes, "");
     file.setContent(content);
     return file;
@@ -94,11 +139,15 @@ class FileGenerator {
     return ret;
   }
 
-  reduceMessageTypes(ret, descriptorProto) {
-    ret += this.generateMessageClass(descriptorProto);
-    ret += this.generateMessageObj(descriptorProto);
-    ret += descriptorProto.getNestedTypeList().reduce(this.reduceMessageTypes.bind(this), "");
-    return ret;
+  reducerForMessageTypes(parentDescriptors = []) {
+    return (ret, descriptorProto) => {
+      ret += this.generateMessageClass(descriptorProto, parentDescriptors);
+      const nestedEnumReducer = reducerForEnumTypes([...parentDescriptors, descriptorProto]);
+      ret += descriptorProto.getEnumTypeList().reduce(nestedEnumReducer, "");
+      ret += this.generateMessageObj(descriptorProto, parentDescriptors);
+      ret += descriptorProto.getNestedTypeList().reduce(this.reducerForMessageTypes([...parentDescriptors, descriptorProto]).bind(this), "");
+      return ret;
+    }
   }
 
   /**
@@ -108,17 +157,23 @@ class FileGenerator {
    * }
    * ```
    */
-  generateMessageClass(descriptorProto) {
+  generateMessageClass(descriptorProto, parentDescriptors) {
     if (descriptorProto.hasOptions() && descriptorProto.getOptions().getMapEntry()) {
       return "";
     }
 
     let ret = "";
-    const name = descriptorProto.getName();
+
+    const name = (() => {
+      var prefix = parentDescriptors.map((desc) => desc.getName()).join("$");
+      return prefix === '' ? descriptorProto.getName() : `${prefix}$${descriptorProto.getName()}`;
+    })();
+
     ret += `declare export class ${name} {\n`;
     ret += descriptorProto.getFieldList().reduce(this.reduceMessageFields.bind(this), "");
     ret += generateOtherMethods(name);
-    ret += descriptorProto.getNestedTypeList().reduce(this.reduceNestedStaticTypes.bind(this), "");
+    ret += descriptorProto.getNestedTypeList().reduce(this.reducerForNestedStaticTypes([...parentDescriptors, descriptorProto]).bind(this), "");
+    ret += descriptorProto.getEnumTypeList().reduce(reducerForNestedStaticEnums(name).bind(this), "");
     ret += '}\n';
     ret += "\n";
     return ret;
@@ -131,9 +186,12 @@ class FileGenerator {
    * }
    * ```
    */
-  generateMessageObj(descriptorProto) {
+  generateMessageObj(descriptorProto, parentDescriptors) {
     let ret = "";
-    const name = descriptorProto.getName();
+    const name = (() => {
+      var prefix = parentDescriptors.map((desc) => desc.getName()).join("$");
+      return prefix === '' ? descriptorProto.getName() : `${prefix}$${descriptorProto.getName()}`;
+    })();
     ret += `export type ${name}Obj = {\n`;
     ret += descriptorProto.getFieldList().reduce(this.reduceMessageObjFields.bind(this), "");
     ret += '}\n';
@@ -160,18 +218,16 @@ class FileGenerator {
     return ret;
   }
 
-  /**
-   * ```
-   * static Foo: typeof Foo;
-   * ```
-   */
-  reduceNestedStaticTypes(ret, descriptorProto, index, collection) {
-    const options = descriptorProto.getOptions();
-    if (options != null && options.getMapEntry()) return ret;
+  reducerForNestedStaticTypes(parentDescriptors) {
+    const prefix = parentDescriptors.map((desc) => desc.getName()).join("$") + "$";
+    return (ret, descriptorProto, index, collection) => {
+      const options = descriptorProto.getOptions();
+      if (options != null && options.getMapEntry()) return ret;
 
-    const name = descriptorProto.getName();
-    ret += `${INDENT}static ${name}: typeof ${name};\n`;
-    return ret;
+      const name = descriptorProto.getName();
+      ret += `${INDENT}static ${name}: typeof ${prefix}${name};\n`;
+      return ret;
+    }
   }
 
   //
@@ -260,12 +316,11 @@ class FileGenerator {
         return ["string", "Uint8Array"];
       case FieldDescriptorProto.Type.TYPE_GROUP:
       case FieldDescriptorProto.Type.TYPE_MESSAGE: {
-        const type = typeName.split(".");
-        return `${type[type.length - 1]}${toObject ? "Obj" : ""}`;
+        const name = resolveTypeName(typeName, this.fileDescriptorProto.getPackage());
+        return `${name}${toObject ? "Obj" : ""}`;
       }
       case FieldDescriptorProto.Type.TYPE_ENUM: {
-        const type = typeName.split(".");
-        return `${type[type.length - 1]}Type`;
+        return `${resolveTypeName(typeName, this.fileDescriptorProto.getPackage())}Type`;
       }
       default:
         return "ERROR";
@@ -308,8 +363,6 @@ class FileGenerator {
       foundDescriptor.hasOptions() &&
       foundDescriptor.getOptions().getMapEntry();
   }
-
-
 }
 
 export default FileGenerator;
