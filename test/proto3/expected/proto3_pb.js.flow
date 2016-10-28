@@ -103,7 +103,7 @@ type TestProto3$NestedEnum = {
   NESTED_BAZ: 2
 }
 
-type TestProto3$NestedEnumType = 0 | 1 | 2;
+export type TestProto3$NestedEnumType = 0 | 1 | 2;
 
 export type TestProto3Obj = {
   optionalInt32: number,
@@ -173,7 +173,7 @@ type TestProto3$NestedMessage$Type = {
   B: 1
 }
 
-type TestProto3$NestedMessage$TypeType = 0 | 1;
+export type TestProto3$NestedMessage$TypeType = 0 | 1;
 
 export type TestProto3$NestedMessageObj = {
   type: TestProto3$NestedMessage$TypeType
