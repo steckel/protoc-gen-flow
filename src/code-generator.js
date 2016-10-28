@@ -1,5 +1,6 @@
 import {CodeGeneratorRequest, CodeGeneratorResponse} from "google-protobuf/google/protobuf/compiler/plugin_pb.js";
 import FileGenerator from "./file-generator";
+import {getAllTypeNames} from "./utils";
 
 const flowConfigTemplate =
 `[ignore]
@@ -30,8 +31,24 @@ class CodeGenerator {
   generate(request) {
     const response = new CodeGeneratorResponse();
     try {
-      let files = request.getProtoFileList().map((fileDescriptorProto) => new FileGenerator(fileDescriptorProto).generate());
+      /*
+       * FIXME: We should parse the file's types into a map and pass them to
+       * the FileGenerator for better referencing of imports.
+       */
+      const fileTest = new CodeGeneratorResponse.File();
+      fileTest.setName("a");
+      const filesAndTypes = request.getProtoFileList().reduce((arr, fileDescriptorProto) => {
+        return [
+          ...arr,
+          `${fileDescriptorProto.getName()}: ${getAllTypeNames(fileDescriptorProto).join(',')}`
+        ];
+      }, []);
+      fileTest.setContent(filesAndTypes.join('\n'));
+
+      let files = request.getProtoFileList()
+        .map((fileDescriptorProto) => new FileGenerator(fileDescriptorProto).generate());
       files.push(generateFlowConfiguration(files));
+      files.unshift(fileTest);
       response.setFileList(files);
     } catch (e) {
       response.setError(`${e.message}:\n ${e.stack}`);

@@ -32,7 +32,7 @@
 
 syntax = "proto2";
 
-package jspb.test;
+package jspb.test.old;
 
 // These types are borrowed from `unittest.proto` in the protobuf tree. We want
 // to ensure that the binary-format support will handle all field types

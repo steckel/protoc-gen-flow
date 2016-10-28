@@ -1,6 +1,7 @@
 import {CodeGeneratorResponse} from "google-protobuf/google/protobuf/compiler/plugin_pb.js";
 import {FieldDescriptorProto} from 'google-protobuf/google/protobuf/descriptor_pb.js';
-import {camelize, pascalCase} from "./utils";
+import {camelize, pascalCase, getAllTypeNames} from "./utils";
+
 
 const GENERATED_COMMENT = "// GENERATED CODE -- DO NOT EDIT!";
 const INDENT = "  ";
@@ -110,12 +111,12 @@ const reducerForNestedStaticEnums = (prefix) => (ret, enumDescriptorProto, index
   return ret;
 };
 
-
 const getFileName = (depName) => `${depName.match(/(.*)\.proto/)[1]}_pb`;
 
 class FileGenerator {
   constructor(fileDescriptorProto) {
     this.fileDescriptorProto = fileDescriptorProto;
+   //  this.messageNames = this.
   }
 
   generate() {
@@ -125,6 +126,8 @@ class FileGenerator {
 
     let content = "// @flow\n";
     content += `${GENERATED_COMMENT}\n`;
+    content += "\n";
+    content += getAllTypeNames(this.fileDescriptorProto);
     content += "\n";
     content += this.fileDescriptorProto.getDependencyList().reduce(this.reduceDependencies, "");
     content += this.fileDescriptorProto.getMessageTypeList().reduce(this.reducerForMessageTypes().bind(this), "");
@@ -317,6 +320,7 @@ class FileGenerator {
       case FieldDescriptorProto.Type.TYPE_GROUP:
       case FieldDescriptorProto.Type.TYPE_MESSAGE: {
         const name = resolveTypeName(typeName, this.fileDescriptorProto.getPackage());
+        // return `(${typeName})${name}${toObject ? "Obj" : ""}`;
         return `${name}${toObject ? "Obj" : ""}`;
       }
       case FieldDescriptorProto.Type.TYPE_ENUM: {
