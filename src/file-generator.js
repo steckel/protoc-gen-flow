@@ -93,7 +93,7 @@ const reducerForEnumTypes = (parentDescriptors) => (ret, enumDescriptor, index, 
   ret += "\n";
   ret += "}\n";
   ret += "\n";
-  ret += `type ${prefix}$${enumDescriptor.getName()}Type = `;
+  ret += `export type ${prefix}$${enumDescriptor.getName()}Type = `;
   ret += enumDescriptor.getValueList().reduce((_ret, value, i, list) => {
     _ret += value.getNumber();
     if (i !== list.length -1) _ret += " | ";
