@@ -1,7 +1,8 @@
 // @flow
 // GENERATED CODE -- DO NOT EDIT!
 
-import type {/* IMPLEMENT ME */} from "./proto2_pb.js";
+import * as jspbTestTwoProto2 from "../../../jspb/test/two/proto2_pb.js";
+import type {/* IMPLEMENT ME */} from "../../../jspb/test/two/proto2_pb.js";
 
 declare export class TestProto3 {
   getOptionalInt32(): number;
@@ -34,8 +35,8 @@ declare export class TestProto3 {
   setOptionalString(val: string): void;
   getOptionalBytes(): string|Uint8Array;
   setOptionalBytes(val: string|Uint8Array): void;
-  getOptionalForeignMessage(): ?ForeignMessage;
-  setOptionalForeignMessage(val: ?ForeignMessage): void;
+  getOptionalForeignMessage(): ?jspbTestTwoProto2.ForeignMessage;
+  setOptionalForeignMessage(val: ?jspbTestTwoProto2.ForeignMessage): void;
   getOptionalForeignEnum(): Proto3EnumType;
   setOptionalForeignEnum(val: Proto3EnumType): void;
   getOptionalNestedEnum(): TestProto3$NestedEnumType;
@@ -72,14 +73,14 @@ declare export class TestProto3 {
   setRepeatedStringList(val: Array<string>): void;
   getRepeatedBytesList(): Array<string>|Array<Uint8Array>;
   setRepeatedBytesList(val: Array<string>|Array<Uint8Array>): void;
-  getRepeatedForeignMessageList(): Array<ForeignMessage>;
-  setRepeatedForeignMessageList(val: Array<ForeignMessage>): void;
+  getRepeatedForeignMessageList(): Array<jspbTestTwoProto2.ForeignMessage>;
+  setRepeatedForeignMessageList(val: Array<jspbTestTwoProto2.ForeignMessage>): void;
   getRepeatedForeignEnumList(): Array<Proto3EnumType>;
   setRepeatedForeignEnumList(val: Array<Proto3EnumType>): void;
   getOneofUint32(): number;
   setOneofUint32(val: number): void;
-  getOneofForeignMessage(): ?ForeignMessage;
-  setOneofForeignMessage(val: ?ForeignMessage): void;
+  getOneofForeignMessage(): ?jspbTestTwoProto2.ForeignMessage;
+  setOneofForeignMessage(val: ?jspbTestTwoProto2.ForeignMessage): void;
   getOneofString(): string;
   setOneofString(val: string): void;
   getOneofBytes(): string|Uint8Array;

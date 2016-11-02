@@ -5,4 +5,4 @@
 [libs]
 
 [options]
-module.name_mapper='^\(.*\)proto3_pb\(\.js\)?$' -> '<PROJECT_ROOT>/decls/proto3_pb.js.flow'
+module.name_mapper='^\(.*\)jspb/test/three/proto3_pb\(\.js\)?$' -> '<PROJECT_ROOT>/decls/jspb/test/three/proto3_pb.js.flow'
