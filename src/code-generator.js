@@ -30,7 +30,9 @@ class CodeGenerator {
   generate(request) {
     const response = new CodeGeneratorResponse();
     try {
-      let files = request.getProtoFileList().map((fileDescriptorProto) => new FileGenerator(fileDescriptorProto).generate());
+      const fileToGenerate = new Set(request.getFileToGenerateList());
+      const fileDescriptors = request.getProtoFileList().filter((desc) => fileToGenerate.has(desc.getName()));
+      let files = fileDescriptors.map((fileDescriptorProto) => new FileGenerator(fileDescriptorProto).generate());
       files.push(generateFlowConfiguration(files));
       response.setFileList(files);
     } catch (e) {
