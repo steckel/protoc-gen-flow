@@ -30,9 +30,9 @@
 
 syntax = "proto3";
 
-import "proto2.proto";
+import "jspb/test/two/proto2.proto";
 
-package jspb.test;
+package jspb.test.three;
 
 message TestProto3 {
      int32 optional_int32    =  1;
@@ -51,10 +51,10 @@ message TestProto3 {
     string optional_string   = 14;
      bytes optional_bytes    = 15;
 
-  ForeignMessage optional_foreign_message = 19;
-  Proto3Enum     optional_foreign_enum    = 22;
-  NestedEnum     optional_nested_enum     = 23;
-  NestedMessage  optional_nested_message  = 24;
+  jspb.test.two.ForeignMessage optional_foreign_message = 19;
+  Proto3Enum                   optional_foreign_enum    = 22;
+  NestedEnum                   optional_nested_enum     = 23;
+  NestedMessage                optional_nested_message  = 24;
 
   repeated    int32 repeated_int32    = 31;
   repeated    int64 repeated_int64    = 32;
@@ -72,12 +72,12 @@ message TestProto3 {
   repeated   string repeated_string   = 44;
   repeated    bytes repeated_bytes    = 45;
 
-  repeated ForeignMessage repeated_foreign_message = 49;
-  repeated Proto3Enum     repeated_foreign_enum    = 52;
+  repeated jspb.test.two.ForeignMessage repeated_foreign_message = 49;
+  repeated Proto3Enum                   repeated_foreign_enum    = 52;
 
   oneof oneof_field {
     uint32 oneof_uint32 = 111;
-    ForeignMessage oneof_foreign_message = 112;
+    jspb.test.two.ForeignMessage oneof_foreign_message = 112;
     string oneof_string = 113;
     bytes oneof_bytes = 114;
   }

@@ -1,25 +1,15 @@
 import {CodeGeneratorResponse} from "google-protobuf/google/protobuf/compiler/plugin_pb.js";
 import {FieldDescriptorProto} from 'google-protobuf/google/protobuf/descriptor_pb.js';
-import {camelize, pascalCase} from "./utils";
+import {
+  camelize,
+  getFileName,
+  getImportPath,
+  getModuleName,
+  pascalCase
+} from "./utils";
 
 const GENERATED_COMMENT = "// GENERATED CODE -- DO NOT EDIT!";
 const INDENT = "  ";
-
-
-const escapeRegExp = (str) => str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-
-/**
- * Resolves a potentially fully-qualifief typename (e.g. .com.foo.Baz.Bar) with
- * its package name (com.foo). The output of which would be Baz$Bar.
- */
-const resolveTypeName = (typeName, pkg) => {
-  const fullyQualified = typeName.match(/^\.(.*)$/);
-  if (fullyQualified == null) throw new Error("Not what I expected");
-  const [_, match] = fullyQualified; // "jspb.test.MapValueEnum"
-  if (match == null) throw new Error("Expected a match");
-  const regexp = new RegExp("^" + escapeRegExp(pkg) + "\.");
-  return match.replace(regexp, "").replace(/\./g, "$");
-};
 
 const isNullable = (type) => {
   switch (type) {
@@ -110,12 +100,10 @@ const reducerForNestedStaticEnums = (prefix) => (ret, enumDescriptorProto, index
   return ret;
 };
 
-
-const getFileName = (depName) => `${depName.match(/(.*)\.proto/)[1]}_pb`;
-
 class FileGenerator {
-  constructor(fileDescriptorProto) {
+  constructor(fileDescriptorProto, deps) {
     this.fileDescriptorProto = fileDescriptorProto;
+    this.deps = deps;
   }
 
   generate() {
@@ -134,7 +122,8 @@ class FileGenerator {
   }
 
   reduceDependencies(ret, dependency, index, array) {
-    ret += `import type {/* IMPLEMENT ME */} from "./${getFileName(dependency)}.js";\n`;
+    ret += `import * as ${getModuleName(dependency)} from "${getImportPath(dependency)}.js";\n`;
+    ret += `import type {/* IMPLEMENT ME */} from "${getImportPath(dependency)}.js";\n`;
     if (array.length - 1 === index) ret += "\n";
     return ret;
   }
@@ -316,11 +305,22 @@ class FileGenerator {
         return ["string", "Uint8Array"];
       case FieldDescriptorProto.Type.TYPE_GROUP:
       case FieldDescriptorProto.Type.TYPE_MESSAGE: {
-        const name = resolveTypeName(typeName, this.fileDescriptorProto.getPackage());
-        return `${name}${toObject ? "Obj" : ""}`;
+        const dependency = this.deps.get(typeName);
+        if (dependency == null) {
+          return `${typeName}${toObject ? "Obj" : ""}`;
+        } else {
+          const normalizedName = dependency.name.replace(/\./g, "$");
+          return toObject
+            ? `${normalizedName}Obj`
+            : (dependency.packageName === this.fileDescriptorProto.getPackage()) ? normalizedName : `${dependency.moduleName}.${normalizedName}`;
+        }
       }
       case FieldDescriptorProto.Type.TYPE_ENUM: {
-        return `${resolveTypeName(typeName, this.fileDescriptorProto.getPackage())}Type`;
+        const dependency = this.deps.get(typeName);
+        return (dependency == null)
+          ? `${typeName}Type`
+          : `${dependency.name.replace(/\./g, "$")}Type`;
+        // TODO: https://github.com/steckel/protoc-gen-flow/issues/9 Add to req imports
       }
       default:
         return "ERROR";

@@ -1,9 +1,14 @@
 import tmp from "tmp";
 import {spawn} from "child_process";
-import {readFileSync, readdirSync} from "fs";
+import {readFileSync, readdirSync, statSync} from "fs";
 import { deepEqual, strictEqual } from "assert";
 import path from "path";
 import {describe, it} from "mocha";
+
+const recursiveReadSync = (dir) => {
+  const reducer = (arr, file) => statSync(path.join(dir, file)).isDirectory() ? [...arr, ...recursiveReadSync(path.join(dir, file))] : [...arr, path.join(dir, file)];
+  return readdirSync(dir).reduce(reducer, []);
+};
 
 const tmpDir = () => new Promise((resolve, reject) => {
   tmp.dir((err, path, cleanup) => {
@@ -33,15 +38,14 @@ const testCase = (testCase, entry) => {
   describe("proto3", () => {
     let tmpPath, cleanup, stdout, stderr, code, generatedFiles;
     const expectedDir = path.resolve(__dirname, testCase, "expected");
-    const expectedFiles = readdirSync(expectedDir);
+    const expectedFiles = recursiveReadSync(expectedDir).map((file) => path.relative(expectedDir, file));
 
     before(async () => {
       const protoPath = path.resolve(__dirname, testCase, "src");
       const proto = path.resolve(protoPath, entry);
       [tmpPath, cleanup] = await tmpDir();
-      ({stdout, stderr, code} =
-        await asyncSpawn("protoc", [ `--plugin=${plugin}`, `--flow_out=${tmpPath}/`, `--proto_path=${protoPath}/`, proto ]));
-      generatedFiles = readdirSync(tmpPath);
+      ({stdout, stderr, code} = await asyncSpawn("protoc", [ `--plugin=${plugin}`, `--flow_out=${tmpPath}/`, `--proto_path=${protoPath}/`, proto ]));
+      generatedFiles = recursiveReadSync(tmpPath).map((file) => path.relative(tmpPath, file));
     });
 
     it("has an empty stdout", () => {
@@ -71,6 +75,6 @@ const testCase = (testCase, entry) => {
 };
 
 describe("protoc-gen-flow", () => {
-  testCase("proto3", "proto3.proto");
+  testCase("proto3", "jspb/test/three/proto3.proto");
 });
 
