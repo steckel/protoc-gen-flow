@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 import * as jspbTestTwoProto2 from "../../../jspb/test/two/proto2_pb.js";
-import type {/* IMPLEMENT ME */} from "../../../jspb/test/two/proto2_pb.js";
+import type {ForeignMessageObj} from "../../../jspb/test/two/proto2_pb.js";
 
 declare export class TestProto3 {
   getOptionalInt32(): number;
