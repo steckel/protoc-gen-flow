@@ -104,6 +104,10 @@ class FileGenerator {
   constructor(fileDescriptorProto, deps) {
     this.fileDescriptorProto = fileDescriptorProto;
     this.deps = deps;
+    this.importTypes = Array.from(this.deps.values()).reduce((map, dep) => {
+      map[dep.moduleName] = new Set();
+      return map;
+    }, {});
   }
 
   generate() {
@@ -111,19 +115,25 @@ class FileGenerator {
     const strippedName = getFileName(this.fileDescriptorProto.getName());
     file.setName(`${strippedName}.js.flow`);
 
-    let content = "// @flow\n";
-    content += `${GENERATED_COMMENT}\n`;
-    content += "\n";
-    content += this.fileDescriptorProto.getDependencyList().reduce(this.reduceDependencies, "");
+    let content = "";
     content += this.fileDescriptorProto.getMessageTypeList().reduce(this.reducerForMessageTypes().bind(this), "");
     content += this.fileDescriptorProto.getEnumTypeList().reduce(generateEnumTypes, "");
-    file.setContent(content);
+
+    let header = "// @flow\n";
+    header += `${GENERATED_COMMENT}\n`;
+    header += "\n";
+    header += this.fileDescriptorProto.getDependencyList().reduce(this.reduceDependencies.bind(this), "");
+    file.setContent(header + content);
     return file;
   }
 
   reduceDependencies(ret, dependency, index, array) {
-    ret += `import * as ${getModuleName(dependency)} from "${getImportPath(dependency)}.js";\n`;
-    ret += `import type {/* IMPLEMENT ME */} from "${getImportPath(dependency)}.js";\n`;
+    const moduleName = getModuleName(dependency);
+    const importTypes = Array.from(this.importTypes[moduleName].values());
+    ret += `import * as ${moduleName} from "${getImportPath(dependency)}.js";\n`;
+    if (importTypes.length > 0) {
+      ret += `import type {${importTypes.join(", ")}} from "${getImportPath(dependency)}.js";\n`;
+    }
     if (array.length - 1 === index) ret += "\n";
     return ret;
   }
@@ -310,16 +320,24 @@ class FileGenerator {
           return `${typeName}${toObject ? "Obj" : ""}`;
         } else {
           const normalizedName = dependency.name.replace(/\./g, "$");
-          return toObject
-            ? `${normalizedName}Obj`
-            : (dependency.packageName === this.fileDescriptorProto.getPackage()) ? normalizedName : `${dependency.moduleName}.${normalizedName}`;
+          if (toObject) {
+            const typeName = `${normalizedName}Obj`;
+            this.importTypes[dependency.moduleName].add(typeName);
+            return typeName;
+          } else {
+            return (dependency.packageName === this.fileDescriptorProto.getPackage()) ? normalizedName : `${dependency.moduleName}.${normalizedName}`;
+          }
         }
       }
       case FieldDescriptorProto.Type.TYPE_ENUM: {
         const dependency = this.deps.get(typeName);
-        return (dependency == null)
-          ? `${typeName}Type`
-          : `${dependency.name.replace(/\./g, "$")}Type`;
+        if (dependency == null) {
+          return `${typeName}Type`;
+        } else {
+          const typeName = `${dependency.name.replace(/\./g, "$")}Type`;
+          this.importTypes[dependency.moduleName].add(typeName);
+          return typeName;
+        }
         // TODO: https://github.com/steckel/protoc-gen-flow/issues/9 Add to req imports
       }
       default:
