@@ -9,16 +9,31 @@ const generateCode = (serializedRequest) => {
   return Buffer.from(serializedResponse); // TODO: is Buffer.from necessary?
 };
 
-const main = () => {
-   process.stdin.on('readable', () => {
-    const data = process.stdin.read();
-    if (data == null) return;
+const stdin = (stream) => new Promise((resolve, reject) => {
+  let value = [];
+  let length = 0;
 
-    const input = new Uint8Array(data); // TODO: s/Uint8Array/Buffer
-    const output = generateCode(input);
-    process.stdout.write(output, {encoding:'binary'});
-    process.exit(0);
- });
-};
+  stream.on("readable", () => {
+    var chunk;
+    while ((chunk = stream.read())) {
+      value.push(chunk);
+      length += chunk.length;
+    }
+  });
+
+  stream.on("end", () => {
+    resolve(Buffer.concat(value, length));
+  });
+});
+
+const main = () => stdin(process.stdin)
+  .then((data) => new Uint8Array(data))
+  .then(generateCode)
+  .then((output) => process.stdout.write(output, {encoding:'binary'}))
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.warn(error);
+    process.exit(1);
+  });
 
 export default main;
