@@ -31,8 +31,13 @@
 syntax = "proto3";
 
 import "jspb/test/two/proto2.proto";
+import "jspb/test/three/proto3_supplemental.proto";
 
 package jspb.test.three;
+
+message TestProtoPackageSubling {
+  SublingMessage sibling = 1;
+}
 
 message TestProto3 {
      int32 optional_int32    =  1;

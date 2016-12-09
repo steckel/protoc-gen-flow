@@ -32,26 +32,31 @@ const generateFlowConfiguration = (fileMessages) => {
 // deps
 
 const typeNameToModule = (getProtoFileList) => {
-  const reducerForEnumType = ({packageName, moduleName, prefix}) => (map, descriptor) => {
+  const reducerForEnumType = ({fileName, packageName, moduleName, prefix}) => (map, descriptor) => {
     const name = `${prefix}${descriptor.getName()}`;
     const fullyQualifiedName = `.${packageName}.${name}`;
-    map.set(fullyQualifiedName, { packageName, moduleName, name });
+    map.set(fullyQualifiedName, { fileName, packageName, moduleName, name });
     return map;
   };
 
-  const reducerForMessageType = ({packageName, moduleName, prefix}) => (map, descriptor) => {
+  const reducerForMessageType = ({fileName, packageName, moduleName, prefix}) => (map, descriptor) => {
     const name = `${prefix}${descriptor.getName()}`;
     const fullyQualifiedName = `.${packageName}.${name}`;
-    map.set(fullyQualifiedName, { packageName, moduleName, name });
-    map = descriptor.getNestedTypeList().reduce(reducerForMessageType({packageName, moduleName, prefix: `${name}.`}), map);
-    return descriptor.getEnumTypeList().reduce(reducerForEnumType({packageName, moduleName, prefix: `${name}.`}), map);
+    map.set(fullyQualifiedName, { fileName, packageName, moduleName, name });
+    map = descriptor.getNestedTypeList()
+      .reduce(reducerForMessageType({fileName, packageName, moduleName, prefix: `${name}.`}), map);
+    return descriptor.getEnumTypeList()
+        .reduce(reducerForEnumType({fileName, packageName, moduleName, prefix: `${name}.`}), map);
   };
 
   return getProtoFileList.reduce((map, fileDescriptor) => {
     const packageName = fileDescriptor.getPackage();
+    const fileName = fileDescriptor.getName();
     const moduleName = getModuleName(fileDescriptor.getName());
-    map = fileDescriptor.getMessageTypeList().reduce(reducerForMessageType({packageName, moduleName, prefix: ""}), map);
-    return fileDescriptor.getEnumTypeList().reduce(reducerForEnumType({packageName, moduleName, prefix: ""}), map);
+    map = fileDescriptor.getMessageTypeList()
+      .reduce(reducerForMessageType({fileName, packageName, moduleName, prefix: ""}), map);
+    return fileDescriptor.getEnumTypeList()
+      .reduce(reducerForEnumType({fileName, packageName, moduleName, prefix: ""}), map);
   }, new Map());
 };
 

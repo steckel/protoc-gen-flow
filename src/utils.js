@@ -9,7 +9,7 @@ export const getImportPath = (depName) => {
 export const getModuleName = (depName) => {
   const depNames = depName.match(/(.*)\.proto/)[1].split("/");
   return depNames.splice(1).reduce((str, name) => {
-    return `${str}${name.charAt(0).toUpperCase()}${name.slice(1)}`
+    return `${str}${name.charAt(0).toUpperCase()}${pascalCase(name).slice(1)}`
   }, depNames[0]);
 };
 

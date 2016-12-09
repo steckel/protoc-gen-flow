@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+import "jspb/test/two/proto2.proto";
+
+package jspb.test.three;
+
+message SublingMessage {
+  string value = 1;
+}
