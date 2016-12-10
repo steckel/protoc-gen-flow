@@ -3,6 +3,25 @@
 
 import * as jspbTestTwoProto2 from "../../../jspb/test/two/proto2_pb.js";
 import type {ForeignMessageObj} from "../../../jspb/test/two/proto2_pb.js";
+import * as jspbTestThreeProto3Supplemental from "../../../jspb/test/three/proto3_supplemental_pb.js";
+import type {SublingMessageObj} from "../../../jspb/test/three/proto3_supplemental_pb.js";
+
+declare export class TestProtoPackageSubling {
+  getSibling(): ?jspbTestThreeProto3Supplemental.SublingMessage;
+  setSibling(val: ?jspbTestThreeProto3Supplemental.SublingMessage): void;
+  toObject(opt_includeInstance: ?boolean): TestProtoPackageSublingObj;
+  serializeBinary(): Uint8Array;
+  serializeBinaryToWriter(writer: any): void;
+  cloneMessage(): TestProtoPackageSubling;
+  static deserializeBinary(bytes: any): TestProtoPackageSubling;
+  static deserializeBinaryFromReader(msg: TestProtoPackageSubling, reader: any): TestProtoPackageSubling;
+  static serializeBinaryToWriter(message: TestProtoPackageSubling, writer: any): void;
+  static toObject(includeInstance: boolean|typeof undefined, msg: TestProtoPackageSubling): TestProtoPackageSublingObj;
+}
+
+export type TestProtoPackageSublingObj = {
+  sibling: ?SublingMessageObj
+}
 
 declare export class TestProto3 {
   getOptionalInt32(): number;

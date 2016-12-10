@@ -325,7 +325,9 @@ class FileGenerator {
             this.importTypes[dependency.moduleName].add(typeName);
             return typeName;
           } else {
-            return (dependency.packageName === this.fileDescriptorProto.getPackage()) ? normalizedName : `${dependency.moduleName}.${normalizedName}`;
+            return (dependency.fileName === this.fileDescriptorProto.getName())
+              ? normalizedName
+              : `${dependency.moduleName}.${normalizedName}`;
           }
         }
       }
