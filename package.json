@@ -7,9 +7,8 @@
     "bin"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "prepublish": "npm run build",
-    "test": "npm run build && mocha --compilers js:babel-register test/index.js"
+    "prepublish": "make bin",
+    "test": "mocha --compilers js:babel-register test/index.js"
   },
   "author": "",
   "license": "MIT",
