@@ -1,5 +1,5 @@
 import {CodeGeneratorResponse} from "google-protobuf/google/protobuf/compiler/plugin_pb.js";
-import {FieldDescriptorProto} from 'google-protobuf/google/protobuf/descriptor_pb.js';
+import {FieldDescriptorProto, FieldOptions} from 'google-protobuf/google/protobuf/descriptor_pb.js';
 import {
   camelize,
   getFileName,
@@ -294,18 +294,22 @@ class FileGenerator {
     switch (type) {
       case FieldDescriptorProto.Type.TYPE_DOUBLE:
       case FieldDescriptorProto.Type.TYPE_FLOAT:
-      case FieldDescriptorProto.Type.TYPE_DOUBLE:
-      case FieldDescriptorProto.Type.TYPE_FLOAT:
-      case FieldDescriptorProto.Type.TYPE_INT64:
-      case FieldDescriptorProto.Type.TYPE_UINT64:
       case FieldDescriptorProto.Type.TYPE_INT32:
-      case FieldDescriptorProto.Type.TYPE_FIXED64:
       case FieldDescriptorProto.Type.TYPE_FIXED32:
       case FieldDescriptorProto.Type.TYPE_UINT32:
       case FieldDescriptorProto.Type.TYPE_SFIXED32:
-      case FieldDescriptorProto.Type.TYPE_SFIXED64:
       case FieldDescriptorProto.Type.TYPE_SINT32:
+        return "number";
+      case FieldDescriptorProto.Type.TYPE_INT64:
+      case FieldDescriptorProto.Type.TYPE_UINT64:
       case FieldDescriptorProto.Type.TYPE_SINT64:
+      case FieldDescriptorProto.Type.TYPE_FIXED64:
+      case FieldDescriptorProto.Type.TYPE_SFIXED64:
+        if (fieldDescriptor.hasOptions() && fieldDescriptor.getOptions().hasJstype()) {
+          if (fieldDescriptor.getOptions().getJstype() === FieldOptions.JSType.JS_STRING) {
+            return "string";
+          }
+        }
         return "number";
       case FieldDescriptorProto.Type.TYPE_BOOL:
         return "boolean";

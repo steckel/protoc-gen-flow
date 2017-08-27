@@ -96,6 +96,16 @@ declare export class TestProto3 {
   setRepeatedForeignMessageList(val: Array<jspbTestTwoProto2.ForeignMessage>): void;
   getRepeatedForeignEnumList(): Array<Proto3EnumType>;
   setRepeatedForeignEnumList(val: Array<Proto3EnumType>): void;
+  getOptionalInt64String(): string;
+  setOptionalInt64String(val: string): void;
+  getOptionalUint64String(): string;
+  setOptionalUint64String(val: string): void;
+  getOptionalSint64String(): string;
+  setOptionalSint64String(val: string): void;
+  getOptionalFixed64String(): string;
+  setOptionalFixed64String(val: string): void;
+  getOptionalSfixedString(): string;
+  setOptionalSfixedString(val: string): void;
   getOneofUint32(): number;
   setOneofUint32(val: number): void;
   getOneofForeignMessage(): ?jspbTestTwoProto2.ForeignMessage;
@@ -162,6 +172,11 @@ export type TestProto3Obj = {
   repeatedBytesList: Array<string>|Array<Uint8Array>,
   repeatedForeignMessageList: Array<ForeignMessageObj>,
   repeatedForeignEnumList: Array<Proto3EnumType>,
+  optionalInt64String: string,
+  optionalUint64String: string,
+  optionalSint64String: string,
+  optionalFixed64String: string,
+  optionalSfixedString: string,
   oneofUint32: number,
   oneofForeignMessage: ?ForeignMessageObj,
   oneofString: string,
