@@ -80,6 +80,13 @@ message TestProto3 {
   repeated jspb.test.two.ForeignMessage repeated_foreign_message = 49;
   repeated Proto3Enum                   repeated_foreign_enum    = 52;
 
+     int64 optional_int64_string   = 60 [jstype = JS_STRING];
+    uint64 optional_uint64_string  = 61 [jstype = JS_STRING];
+    sint64 optional_sint64_string  = 62 [jstype = JS_STRING];
+   fixed64 optional_fixed64_string = 63 [jstype = JS_STRING];
+  sfixed64 optional_sfixed_string  = 64 [jstype = JS_STRING];
+
+
   oneof oneof_field {
     uint32 oneof_uint32 = 111;
     jspb.test.two.ForeignMessage oneof_foreign_message = 112;
