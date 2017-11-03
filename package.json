@@ -7,7 +7,7 @@
     "bin"
   ],
   "scripts": {
-    "prepublish": "make bin",
+    "preinstall": "make bin",
     "test": "mocha --compilers js:babel-register test/index.js"
   },
   "author": "",
