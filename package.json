@@ -8,7 +8,6 @@
   ],
   "scripts": {
     "prepublish": "make bin",
-    "preinstall": "rollup -c",
     "test": "mocha --compilers js:babel-register test/index.js"
   },
   "author": "",
